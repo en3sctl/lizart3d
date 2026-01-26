@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Telefon Sistemi</title>
+    <link rel="icon" type="image/png" href="3d-iguana.webp">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Dark Mode Toggle -->
+    <button id="darkModeToggle" class="dark-mode-toggle" title="Tema Değiştir">
+        <span class="toggle-icon">🌙</span>
+    </button>
+
+    <div class="container">
+        <!-- Logo Section - Clickable to Anasayfa -->
+        <a href="/Anasayfa" class="logo-section" style="text-decoration: none;">
+            <img src="3d-iguana.webp" alt="LizArt Logo" class="logo-img">
+            <span class="logo-text">LizArt3D</span>
+        </a>
+
+        <!-- Yükleniyor Ekranı -->
+        <div id="loadingScreen" class="screen">
+            <div class="spinner"></div>
+            <p>Yükleniyor...</p>
+        </div>
+
+        <!-- QR Bulunamadı -->
+        <div id="notFoundScreen" class="screen hidden">
+            <div class="icon">❌</div>
+            <h2>QR Kod Bulunamadı</h2>
+            <p>Bu QR kod sistemde kayıtlı değil.</p>
+        </div>
+
+        <!-- QR Deaktif -->
+        <div id="deactiveScreen" class="screen hidden">
+            <div class="icon">⏸️</div>
+            <h2>QR Kod Deaktif</h2>
+            <p>Bu QR kod şu anda devre dışı.</p>
+            <hr>
+            <p class="small-text">QR kod sahibi misiniz?</p>
+            <button id="ownerBtnDeactive" class="btn secondary">Güvenlik Kodu ile Giriş</button>
+        </div>
+
+        <!-- Güvenlik Kodu Girişi (İlk kayıt veya güncelleme) -->
+        <div id="securityCodeScreen" class="screen hidden">
+            <div class="icon">🔐</div>
+            <h2>Güvenlik Kodu</h2>
+            <p>QR kodunuzu yönetmek için güvenlik kodunuzu girin</p>
+            <label for="securityCodeInput" class="visually-hidden">Güvenlik Kodu</label>
+            <input type="password" id="securityCodeInput" maxlength="50" placeholder="Güvenlik kodunuz" autocomplete="off">
+            <button id="verifyCodeBtn" class="btn primary">Doğrula</button>
+            <p id="securityError" class="error hidden"></p>
+        </div>
+
+        <!-- Telefon Numarası Kayıt/Güncelleme -->
+        <div id="phoneSetupScreen" class="screen hidden">
+            <div class="icon" style="margin-bottom: 15px;"><img src="phone.png" alt="Phone" style="height: 120px; width: auto;"></div>
+            <h2>QR Kod Ayarlari</h2>
+            
+            <div class="form-group">
+                <div class="field-header">
+                    <label for="nameInput">Isim (opsiyonel)</label>
+                    <div class="field-toggle">
+                        <label class="toggle small">
+                            <input type="checkbox" id="nameVisibleToggle" checked>
+                            <span class="slider"></span>
+                        </label>
+                        <span class="toggle-label" id="nameVisibleText">Görünür</span>
+                    </div>
+                </div>
+                <input type="text" id="nameInput" placeholder="Adiniz Soyadiniz">
+            </div>
+            
+            <div class="form-group">
+                <div class="field-header">
+                    <label for="plateInput">Arac Plakasi (opsiyonel)</label>
+                    <div class="field-toggle">
+                        <label class="toggle small">
+                            <input type="checkbox" id="plateVisibleToggle" checked>
+                            <span class="slider"></span>
+                        </label>
+                        <span class="toggle-label" id="plateVisibleText">Görünür</span>
+                    </div>
+                </div>
+                <input type="text" id="plateInput" placeholder="34 ABC 123">
+            </div>
+            
+            <div class="form-group">
+                <label for="phoneInput">Telefon Numarasi</label>
+                <input type="tel" id="phoneInput" placeholder="+90 5XX XXX XX XX">
+            </div>
+            
+            <div class="form-group">
+                <div class="field-header">
+                    <label for="noteInput">Not (opsiyonel)</label>
+                    <div class="field-toggle">
+                        <label class="toggle small">
+                            <input type="checkbox" id="noteVisibleToggle" checked>
+                            <span class="slider"></span>
+                        </label>
+                        <span class="toggle-label" id="noteVisibleText">Görünür</span>
+                    </div>
+                </div>
+                <div class="quick-notes">
+                    <button type="button" class="quick-note-btn" data-note="15dk'ya geliyorum">⏱️ 15dk'ya geliyorum</button>
+                    <button type="button" class="quick-note-btn" data-note="Toplantıdayım, mesaj bırakın">📞 Toplantıdayım</button>
+                    <button type="button" class="quick-note-btn" data-note="Acil durumda arayın">🚨 Acil durumda arayın</button>
+                    <button type="button" class="quick-note-btn" data-note="Kısa süreliğine park ettim">🅿️ Kısa park</button>
+                </div>
+                <textarea id="noteInput" placeholder="Hızlı not seçin veya kendiniz yazın..." maxlength="200"></textarea>
+                <small class="char-counter"><span id="noteCharCount">0</span>/200</small>
+            </div>
+            
+            <div class="form-group">
+                <label for="parkTimerBtn">Park Sayacı</label>
+                <div class="park-timer-control">
+                    <button type="button" id="parkTimerBtn" class="btn park-btn">
+                        <span class="park-btn-icon">🅿️</span>
+                        <span class="park-btn-text">Park Başlat</span>
+                    </button>
+                    <div id="parkTimerDisplay" class="park-timer-display hidden">
+                        <span class="park-timer-label">Park Süresi:</span>
+                        <span id="parkTimerValue" class="park-timer-value">00:00</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="activeToggle">QR Kod Durumu</label>
+                <div class="toggle-container">
+                    <label class="toggle">
+                        <input type="checkbox" id="activeToggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                    <span id="statusText">Aktif</span>
+                </div>
+            </div>
+            
+            <!-- Son Taramalar Paneli -->
+            <div class="form-group">
+                <span class="form-label" id="scanHistoryLabel">📊 Son Taramalar</span>
+                <div id="scanHistoryPanel" class="scan-history-panel" aria-labelledby="scanHistoryLabel">
+                    <div id="scanHistoryList" class="scan-history-list">
+                        <p class="no-scans">Henüz tarama yok</p>
+                    </div>
+                    <div class="scan-summary">
+                        <span class="scan-total">Toplam: <strong id="totalScans">0</strong> tarama</span>
+                    </div>
+                </div>
+            </div>
+            
+            <button id="savePhoneBtn" class="btn primary">Kaydet</button>
+            <p id="saveSuccess" class="success hidden">Başarıyla kaydedildi!</p>
+            <p id="saveError" class="error hidden"></p>
+            <hr>
+            <button id="changeSecurityCodeBtn" class="btn secondary">🔑 Güvenlik Kodumu Değiştir</button>
+            <button id="deleteAccountBtn" class="btn danger">🗑️ Hesabımı Sil</button>
+        </div>
+
+        <!-- Telefon Yonlendirme (Ziyaretciler icin) -->
+        <div id="redirectScreen" class="screen hidden">
+            <div class="visitor-card">
+                <div class="visitor-header">
+                    <div class="phone-icon-wrapper">
+                        <img src="phone.png" alt="Phone" class="phone-icon">
+                    </div>
+                    <h2 id="ownerNameDisplay"></h2>
+                    <div id="plateDisplay" class="plate-badge"><span id="plateText"></span></div>
+                </div>
+                
+                <div id="noteDisplay" class="note-card hidden">
+                    <div class="note-header">
+                        <span class="note-icon">💬</span>
+                        <span class="note-title">Araç Sahibinden Not</span>
+                    </div>
+                    <p id="noteText" class="note-content"></p>
+                </div>
+                
+                <div id="visitorParkTimer" class="visitor-park-timer hidden">
+                    <div class="visitor-park-icon">🅿️</div>
+                    <div class="visitor-park-info">
+                        <span class="visitor-park-label">Park Süresi</span>
+                        <span id="visitorParkTime" class="visitor-park-time">00:00</span>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <a id="callLink" href="#" class="action-btn call-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+                        </svg>
+                        <span>Ara</span>
+                    </a>
+                    <a id="whatsappLink" href="#" class="action-btn whatsapp-btn" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                        </svg>
+                        <span>WhatsApp</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="owner-access">
+                <p class="small-text">QR kod sahibi misiniz?</p>
+                <button id="ownerBtn" class="btn secondary">Güvenlik Kodu ile Giriş</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Kullanıcı Sözleşmesi Modalı -->
+    <div id="agreementModal" class="modal hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📋 Kullanıcı Sözleşmesi ve Gizlilik Politikası</h2>
+            </div>
+            <div class="modal-body">
+                <div class="agreement-text">
+                    <h3>1. Veri Sorumlusu</h3>
+                    <p>Bu hizmet <strong>LizArt3D</strong> tarafından sunulmaktadır. Kişisel verilerinizin korunması konusunda 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) kapsamında veri sorumlusu sıfatıyla hareket etmekteyiz.</p>
+
+                    <h3>2. Toplanan Kişisel Veriler</h3>
+                    <p>Hizmetimizi kullanmanız halinde aşağıdaki kişisel verileriniz toplanmaktadır:</p>
+                    <ul>
+                        <li><strong>Ad Soyad:</strong> Kimlik doğrulama ve iletişim amacıyla (opsiyonel)</li>
+                        <li><strong>Araç Plakası:</strong> Araç tanımlama amacıyla (opsiyonel)</li>
+                        <li><strong>Telefon Numarası:</strong> QR kod aracılığıyla iletişim sağlanması amacıyla (zorunlu)</li>
+                    </ul>
+
+                    <h3>3. Verilerin İşlenme Amacı</h3>
+                    <p>Kişisel verileriniz aşağıdaki amaçlarla işlenmektedir:</p>
+                    <ul>
+                        <li>QR kod tarandığında araç sahibiyle iletişim kurulmasını sağlamak</li>
+                        <li>Hizmetin düzgün çalışmasını temin etmek</li>
+                        <li>Kullanıcı deneyimini iyileştirmek</li>
+                    </ul>
+
+                    <h3>4. Verilerin Saklanması</h3>
+                    <p>Verileriniz <strong>Firebase Realtime Database</strong> altyapısında güvenli bir şekilde saklanmaktadır. Veriler şifrelenmiş bağlantı (SSL/TLS) üzerinden iletilmekte ve Google'ın güvenlik standartlarına uygun olarak muhafaza edilmektedir.</p>
+
+                    <h3>5. Verilerin Paylaşımı</h3>
+                    <p>Kişisel verileriniz:</p>
+                    <ul>
+                        <li>QR kodunuzu tarayan kişilerle <strong>yalnızca telefon numaranız, adınız ve plaka bilginiz</strong> paylaşılır</li>
+                        <li>Üçüncü taraflarla ticari amaçlı paylaşılmaz</li>
+                        <li>Yasal zorunluluklar dışında hiçbir kurum/kuruluşa aktarılmaz</li>
+                    </ul>
+
+                    <h3>6. Güvenlik Kodu</h3>
+                    <p>Size özel olarak oluşturulan <strong>12 haneli güvenlik kodu</strong>, verilerinize erişim ve düzenleme yetkisi sağlar. Bu kodu güvenli bir yerde saklayınız ve üçüncü kişilerle paylaşmayınız.</p>
+
+                    <h3>7. Kullanıcı Hakları (KVKK Madde 11)</h3>
+                    <p>Kanun kapsamında aşağıdaki haklara sahipsiniz:</p>
+                    <ul>
+                        <li>Kişisel verilerinizin işlenip işlenmediğini öğrenme</li>
+                        <li>İşlenmişse buna ilişkin bilgi talep etme</li>
+                        <li>Verilerin düzeltilmesini veya silinmesini isteme</li>
+                        <li>İşlemenin kısıtlanmasını talep etme</li>
+                        <li>Verilerin aktarıldığı üçüncü kişileri öğrenme</li>
+                    </ul>
+
+                    <h3>8. QR Kod Durumu</h3>
+                    <p>QR kodunuzu istediğiniz zaman <strong>aktif/pasif</strong> yapabilirsiniz. Pasif durumda verileriniz saklanmaya devam eder ancak QR kod tarandığında bilgileriniz gösterilmez.</p>
+
+                    <h3>9. Veri Silme</h3>
+                    <p>Verilerinizin tamamen silinmesini talep etmek için bizimle iletişime geçebilirsiniz. Silme talebi üzerine tüm kişisel verileriniz sistemden kalıcı olarak kaldırılacaktır.</p>
+
+                    <h3>10. Sözleşme Değişiklikleri</h3>
+                    <p>Bu sözleşme gerektiğinde güncellenebilir. Güncellemeler yayınlandığı tarihten itibaren geçerli olacaktır.</p>
+
+                    <div class="agreement-footer">
+                        <p><strong>Son Güncelleme:</strong> 25 Ocak 2026</p>
+                        <p>Bu sözleşmeyi kabul ederek, yukarıda belirtilen şartları okuduğunuzu ve onayladığınızı beyan etmiş olursunuz.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <label class="agreement-checkbox">
+                    <input type="checkbox" id="agreementCheck">
+                    <span>Kullanıcı sözleşmesini okudum ve kabul ediyorum</span>
+                </label>
+                <button id="agreementAcceptBtn" class="btn primary" disabled>Kabul Et ve Devam Et</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Güvenlik Kodu Değiştirme Modalı -->
+    <div id="changeSecurityCodeModal" class="modal hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🔑 Güvenlik Kodu Değiştirme</h2>
+            </div>
+            <div class="modal-body">
+                <div class="agreement-text">
+                    <div class="info-box">
+                        <p><strong>BİLGİ:</strong> Yeni güvenlik kodunuz benzersiz olmalıdır ve sistemde başka bir kullanıcı tarafından kullanılmıyor olmalıdır.</p>
+                    </div>
+
+                    <h3>Güvenlik Kodu Kuralları</h3>
+                    <ul>
+                        <li>Güvenlik kodu <strong>en az 8 karakter</strong> olmalıdır</li>
+                        <li><strong>Harf, rakam ve özel karakterler</strong> kullanabilirsiniz</li>
+                        <li>Sistemde <strong>benzersiz</strong> olmalıdır</li>
+                        <li>Güçlü bir şifre için büyük/küçük harf, rakam ve özel karakter kombinasyonu önerilir</li>
+                    </ul>
+
+                    <h3>Öneriler</h3>
+                    <ul>
+                        <li>Doğum tarihi veya telefon numarası gibi kişisel bilgiler kullanmayın</li>
+                        <li>Yeni kodunuzu güvenli bir yerde saklayın</li>
+                        <li>Kodunuzu kimseyle paylaşmayın</li>
+                    </ul>
+                </div>
+                
+                <div class="form-group" style="margin-top: 15px;">
+                    <label for="currentSecurityCodeInput">Mevcut Güvenlik Kodu</label>
+                    <input type="password" id="currentSecurityCodeInput" maxlength="50" placeholder="Mevcut güvenlik kodunuz" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="newSecurityCodeInput">Yeni Güvenlik Kodu</label>
+                    <input type="password" id="newSecurityCodeInput" maxlength="50" placeholder="En az 8 karakter" autocomplete="off">
+                    <small id="newCodeStatus" class="code-status"></small>
+                </div>
+                <div class="form-group">
+                    <label for="confirmSecurityCodeInput">Yeni Güvenlik Kodu Tekrar</label>
+                    <input type="password" id="confirmSecurityCodeInput" maxlength="50" placeholder="Yeni kodu tekrar girin" autocomplete="off">
+                </div>
+                <p id="changeSecurityError" class="error hidden"></p>
+            </div>
+            <div class="modal-footer">
+                <div class="button-group" style="max-width: 100%;">
+                    <button id="cancelChangeSecurityBtn" class="btn secondary">İptal</button>
+                    <button id="confirmChangeSecurityBtn" class="btn primary">Kodu Değiştir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hesap Silme Modalı -->
+    <div id="deleteAccountModal" class="modal hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>⚠️ Hesap Silme İşlemi</h2>
+            </div>
+            <div class="modal-body">
+                <div class="agreement-text">
+                    <div class="warning-box">
+                        <p><strong>DİKKAT:</strong> Bu işlem geri alınamaz!</p>
+                    </div>
+
+                    <h3>1. Silinecek Veriler</h3>
+                    <p>Hesabınızı sildiğinizde aşağıdaki tüm verileriniz <strong>kalıcı olarak</strong> silinecektir:</p>
+                    <ul>
+                        <li><strong>Ad Soyad:</strong> Sisteme kayıtlı isim bilginiz</li>
+                        <li><strong>Araç Plakası:</strong> Kayıtlı plaka bilginiz</li>
+                        <li><strong>Telefon Numarası:</strong> İletişim numaranız</li>
+                        <li><strong>QR Kod Ayarları:</strong> Aktif/pasif durumu ve tüm tercihleriniz</li>
+                        <li><strong>Kayıt Geçmişi:</strong> Oluşturma ve güncelleme tarihleri</li>
+                    </ul>
+
+                    <h3>2. Silme İşleminin Sonuçları</h3>
+                    <ul>
+                        <li>QR kodunuz <strong>çalışmaz</strong> hale gelecektir</li>
+                        <li>QR kodu tarayan kişiler <strong>"QR Kod Bulunamadı"</strong> mesajı görecektir</li>
+                        <li>Güvenlik kodunuz <strong>geçersiz</strong> olacaktır</li>
+                        <li>Bu QR kod tekrar <strong>kullanılamaz</strong></li>
+                    </ul>
+
+                    <h3>3. Geri Dönüş</h3>
+                    <p>Silme işlemi <strong>geri alınamaz</strong>. Verileriniz sunucularımızdan tamamen kaldırılacak ve hiçbir şekilde kurtarılamayacaktır.</p>
+
+                    <h3>4. Alternatif: Deaktif Etme</h3>
+                    <p>Hesabınızı silmek yerine QR kodunuzu <strong>deaktif</strong> edebilirsiniz. Bu sayede:</p>
+                    <ul>
+                        <li>Verileriniz korunur</li>
+                        <li>QR kod geçici olarak çalışmaz</li>
+                        <li>İstediğiniz zaman tekrar aktif edebilirsiniz</li>
+                    </ul>
+
+                    <div class="agreement-footer">
+                        <p><strong>Devam etmek için güvenlik kodunuzu girin:</strong></p>
+                    </div>
+                </div>
+                
+                <div class="form-group" style="margin-top: 15px;">
+                    <input type="text" id="deleteSecurityCodeInput" maxlength="12" placeholder="12 haneli güvenlik kodu" autocomplete="off">
+                </div>
+                <p id="deleteError" class="error hidden"></p>
+            </div>
+            <div class="modal-footer">
+                <div class="button-group" style="max-width: 100%;">
+                    <button id="cancelDeleteBtn" class="btn secondary">İptal</button>
+                    <button id="confirmDeleteBtn" class="btn danger">Hesabımı Sil</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    <script src="darkmode.js"></script>
+    <script src="console-art.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

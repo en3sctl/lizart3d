@@ -1,0 +1,1309 @@
+/* =============================================
+   ANASAYFA.CSS - LizArt3D Ana Sayfa Stilleri
+   ============================================= */
+
+/* CSS Variables for Theme */
+body, html {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><polygon points="2,2 30,16 16,30 2,2" fill="%237877c6" stroke="%2300f0ff" stroke-width="2"/></svg>') 2 2, auto;
+}
+
+/* Tıklanabilir alanlarda daha belirgin bir imleç */
+a, button, .product-link, .slider-nav, .slider-dot, .social-btn {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="10" fill="%23ff77c6" stroke="%2300f0ff" stroke-width="3"/></svg>') 16 16, pointer;
+}
+
+
+:root {
+    --neon-primary: #7877c6;
+    --neon-secondary: #ff77c6;
+    --neon-accent: #00f0ff;
+    --glow-intensity: 0.8;
+}
+
+/* =============================================
+   CUSTOM SCROLLBAR
+   ============================================= */
+/* Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0a0a0a;
+    border-left: 1px solid rgba(120, 119, 198, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--neon-primary) 0%, var(--neon-secondary) 100%);
+    border-radius: 10px;
+    border: 2px solid #0a0a0a;
+    transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, var(--neon-secondary) 0%, var(--neon-accent) 100%);
+    box-shadow: 0 0 10px var(--neon-primary);
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: linear-gradient(180deg, var(--neon-accent) 0%, var(--neon-primary) 100%);
+}
+
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--neon-primary) #0a0a0a;
+}
+
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #000;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* =============================================
+   HERO SECTION
+   ============================================= */
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* 3D Scene Container */
+.scene-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    perspective: 1000px;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Animated Background */
+.bg-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+}
+
+/* 3D Grid Floor */
+.grid-floor {
+    position: absolute;
+    bottom: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background-image: 
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    transform: rotateX(60deg);
+    animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+    0% { transform: rotateX(60deg) translateY(0); }
+    100% { transform: rotateX(60deg) translateY(50px); }
+}
+
+/* =============================================
+   SOCIAL LINKS
+   ============================================= */
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.social-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.social-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.1);
+    transform: scale(0);
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.social-btn:hover::before {
+    transform: scale(1);
+}
+
+.social-btn:hover {
+    transform: translateY(-5px) scale(1.1);
+}
+
+/* Ripple Effect */
+.social-btn .ripple,
+.product-link .ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.4);
+    transform: scale(0);
+    animation: rippleEffect 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes rippleEffect {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Floating Animation for Social Buttons */
+.social-btn:nth-child(1) { animation: socialFloat 3s ease-in-out infinite; }
+.social-btn:nth-child(2) { animation: socialFloat 3s ease-in-out infinite 0.2s; }
+.social-btn:nth-child(3) { animation: socialFloat 3s ease-in-out infinite 0.4s; }
+
+@keyframes socialFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.social-btn:hover {
+    animation: none;
+    transform: translateY(-8px) scale(1.15);
+}
+
+.social-btn svg {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    z-index: 1;
+}
+
+/* WhatsApp Button */
+.social-btn.whatsapp {
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+}
+
+.social-btn.whatsapp:hover {
+    box-shadow: 0 15px 35px rgba(37, 211, 102, 0.5);
+}
+
+/* Instagram Button */
+.social-btn.instagram {
+    background: linear-gradient(135deg, #833AB4 0%, #FD1D1D 50%, #FCAF45 100%);
+    box-shadow: 0 8px 25px rgba(131, 58, 180, 0.4);
+}
+
+.social-btn.instagram:hover {
+    box-shadow: 0 15px 35px rgba(131, 58, 180, 0.5);
+}
+
+/* Seller Button */
+.social-btn.seller {
+    background: linear-gradient(135deg, #FF6B00 0%, #FF8C00 100%);
+    box-shadow: 0 8px 25px rgba(255, 107, 0, 0.4);
+}
+
+.social-btn.seller:hover {
+    box-shadow: 0 15px 35px rgba(255, 107, 0, 0.5);
+}
+
+/* =============================================
+   MAIN CONTENT
+   ============================================= */
+.main-content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+    transform-style: preserve-3d;
+}
+
+/* 3D Logo Container */
+.logo-3d-container {
+    position: relative;
+    transform-style: preserve-3d;
+    animation: logoFloat 6s ease-in-out infinite;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.logo-3d-container:hover {
+    animation-play-state: paused;
+}
+
+@keyframes logoFloat {
+    0%, 100% { 
+        transform: translateY(0) rotateX(0deg) rotateY(0deg);
+    }
+    25% { 
+        transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+    }
+    50% { 
+        transform: translateY(-20px) rotateX(0deg) rotateY(0deg);
+    }
+    75% { 
+        transform: translateY(-10px) rotateX(-5deg) rotateY(-5deg);
+    }
+}
+
+.hero-logo {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 30px rgba(255,255,255,0.4)) 
+            drop-shadow(0 0 60px rgba(120, 119, 198, 0.5));
+    transition: all 0.5s ease;
+}
+
+.logo-3d-container:hover .hero-logo {
+    filter: drop-shadow(0 0 40px rgba(255,255,255,0.6)) 
+            drop-shadow(0 0 80px rgba(120, 119, 198, 0.8));
+    transform: scale(1.1);
+}
+
+/* Glow Ring with Neon Effect */
+.glow-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border: 2px solid rgba(255,255,255,0.1);
+    border-radius: 50%;
+    animation: ringPulse 3s ease-in-out infinite;
+}
+
+/* Rotating Neon Border */
+.neon-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 170px;
+    height: 170px;
+    margin: -85px 0 0 -85px;
+    border-radius: 50%;
+    background: conic-gradient(
+        from 0deg,
+        transparent,
+        var(--neon-primary),
+        var(--neon-secondary),
+        var(--neon-accent),
+        transparent
+    );
+    animation: neonSpin 4s linear infinite;
+    opacity: 0.6;
+}
+
+.neon-ring::before {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    background: #000;
+    border-radius: 50%;
+}
+
+@keyframes neonSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.glow-ring::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border: 1px solid rgba(120, 119, 198, 0.2);
+    border-radius: 50%;
+    animation: ringPulse 3s ease-in-out infinite 0.5s;
+}
+
+.glow-ring::after {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    border: 1px solid rgba(255, 119, 198, 0.1);
+    border-radius: 50%;
+    animation: ringPulse 3s ease-in-out infinite 1s;
+}
+
+@keyframes ringPulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.1); opacity: 0.2; }
+}
+
+/* =============================================
+   HERO TITLE & SUBTITLE
+   ============================================= */
+.hero-title {
+    font-family: 'Rakesly', sans-serif;
+    font-style: italic;
+    font-size: 64px;
+    color: #fff;
+    margin-top: 40px;
+    margin-bottom: 15px;
+    text-shadow: 
+        0 0 10px rgba(255,255,255,0.5),
+        0 0 20px rgba(255,255,255,0.3),
+        0 0 40px rgba(120, 119, 198, 0.5),
+        0 0 80px rgba(120, 119, 198, 0.3);
+    letter-spacing: 4px;
+    animation: titleGlow 4s ease-in-out infinite;
+    position: relative;
+    background: linear-gradient(
+        90deg,
+        #fff 0%,
+        #fff 40%,
+        var(--neon-primary) 50%,
+        #fff 60%,
+        #fff 100%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: titleGlow 4s ease-in-out infinite, shimmerText 3s linear infinite;
+}
+
+@keyframes shimmerText {
+    0% { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
+}
+
+@keyframes titleGlow {
+    0%, 100% { 
+        filter: drop-shadow(0 0 10px rgba(255,255,255,0.5))
+                drop-shadow(0 0 20px rgba(120, 119, 198, 0.5));
+    }
+    50% { 
+        filter: drop-shadow(0 0 20px rgba(255,255,255,0.8))
+                drop-shadow(0 0 40px rgba(120, 119, 198, 0.8));
+    }
+}
+
+.hero-subtitle {
+    font-size: 16px;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    margin-bottom: 60px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Shimmer Effect for Subtitle */
+.hero-subtitle::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.2),
+        transparent
+    );
+    animation: subtitleShimmer 4s ease-in-out infinite;
+}
+
+@keyframes subtitleShimmer {
+    0%, 100% { left: -100%; }
+    50%, 60% { left: 100%; }
+}
+
+/* =============================================
+   FLOATING PARTICLES
+   ============================================= */
+.particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: #fff;
+    border-radius: 50%;
+    animation: particleRise 20s linear infinite;
+    opacity: 0;
+}
+
+.particle:nth-child(1) { left: 5%; animation-delay: 0s; }
+.particle:nth-child(2) { left: 15%; animation-delay: 2s; }
+.particle:nth-child(3) { left: 25%; animation-delay: 4s; }
+.particle:nth-child(4) { left: 35%; animation-delay: 1s; }
+.particle:nth-child(5) { left: 45%; animation-delay: 3s; }
+.particle:nth-child(6) { left: 55%; animation-delay: 5s; }
+.particle:nth-child(7) { left: 65%; animation-delay: 2s; }
+.particle:nth-child(8) { left: 75%; animation-delay: 4s; }
+.particle:nth-child(9) { left: 85%; animation-delay: 1s; }
+.particle:nth-child(10) { left: 95%; animation-delay: 3s; }
+
+@keyframes particleRise {
+    0% { 
+        transform: translateY(100vh) scale(0);
+        opacity: 0;
+    }
+    10% { 
+        opacity: 0.8;
+    }
+    90% { 
+        opacity: 0.8;
+    }
+    100% { 
+        transform: translateY(-100vh) scale(1);
+        opacity: 0;
+    }
+}
+
+/* =============================================
+   FOOTER
+   ============================================= */
+.footer {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 10;
+}
+
+.footer p {
+    color: rgba(255,255,255,0.3);
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+/* Mouse Follower Glow */
+.mouse-glow {
+    position: fixed;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(120, 119, 198, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    transition: opacity 0.3s;
+}
+
+/* =============================================
+   SCROLL INDICATOR
+   ============================================= */
+.scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    cursor: pointer;
+    animation: bounceDown 2s infinite;
+}
+
+.scroll-indicator span {
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-right: 2px solid rgba(255,255,255,0.5);
+    border-bottom: 2px solid rgba(255,255,255,0.5);
+    transform: rotate(45deg);
+}
+
+@keyframes bounceDown {
+    0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+    40% { transform: translateX(-50%) translateY(15px); }
+    60% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* =============================================
+   SHOWROOM SECTION
+   ============================================= */
+.showroom-section {
+    position: relative;
+    background: #000;
+    padding: 100px 20px;
+    min-height: 100vh;
+}
+
+.showroom-header {
+    text-align: center;
+    margin-bottom: 80px;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease;
+    position: relative;
+}
+
+.showroom-header.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.showroom-title {
+    font-family: 'Rakesly', sans-serif;
+    font-style: italic;
+    font-size: 48px;
+    color: #fff;
+    margin-bottom: 15px;
+    letter-spacing: 3px;
+    position: relative;
+    display: inline-block;
+}
+
+/* Decorative Lines */
+.showroom-title::before,
+.showroom-title::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--neon-primary), transparent);
+}
+
+.showroom-title::before {
+    right: calc(100% + 20px);
+    background: linear-gradient(90deg, transparent, var(--neon-primary));
+}
+
+.showroom-title::after {
+    left: calc(100% + 20px);
+}
+
+/* Sparkle Stars */
+.showroom-header .sparkle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #fff;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    animation: sparkle 2s ease-in-out infinite;
+}
+
+.showroom-header .sparkle:nth-child(1) {
+    top: 20%;
+    left: 15%;
+    animation-delay: 0s;
+}
+
+.showroom-header .sparkle:nth-child(2) {
+    top: 30%;
+    right: 15%;
+    animation-delay: 0.5s;
+}
+
+.showroom-header .sparkle:nth-child(3) {
+    bottom: 20%;
+    left: 25%;
+    animation-delay: 1s;
+}
+
+@keyframes sparkle {
+    0%, 100% { transform: scale(0) rotate(0deg); opacity: 0; }
+    50% { transform: scale(1) rotate(180deg); opacity: 1; }
+}
+
+.showroom-subtitle {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 6px;
+    text-transform: uppercase;
+}
+
+/* =============================================
+   PRODUCT GRID
+   ============================================= */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* =============================================
+   PRODUCT CARD
+   ============================================= */
+.product-card {
+    background: linear-gradient(145deg, rgba(20, 20, 30, 0.9) 0%, rgba(10, 10, 15, 0.95) 100%);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
+    opacity: 0;
+    transform: translateY(80px) scale(0.95);
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+}
+
+/* Animated Border Gradient */
+.product-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    padding: 1px;
+    background: linear-gradient(
+        135deg,
+        rgba(120, 119, 198, 0.5),
+        transparent 50%,
+        rgba(255, 119, 198, 0.5)
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.product-card:hover::before {
+    opacity: 1;
+}
+
+/* Shine Effect on Hover */
+.product-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,0.1),
+        transparent
+    );
+    transition: left 0.8s;
+    pointer-events: none;
+}
+
+.product-card:hover::after {
+    left: 100%;
+}
+
+.product-card.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.product-card:hover {
+    border-color: rgba(255,255,255,0.15);
+    box-shadow: 
+        0 30px 60px rgba(0,0,0,0.5),
+        0 0 40px rgba(120, 119, 198, 0.15),
+        inset 0 1px 0 rgba(255,255,255,0.1);
+    /* Transform is handled by JavaScript for 3D tilt effect */
+}
+
+/* Smooth transition for 3D tilt */
+.product-card.tilt-active {
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* Product Image Container */
+.product-image-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    background: #0a0a0a;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+.product-image.active {
+    opacity: 1;
+}
+
+.product-card:hover .product-image.active {
+    transform: scale(1.1);
+}
+
+/* Image Slider Dots */
+.slider-dots {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 15;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.product-image-container:hover .slider-dots {
+    opacity: 1;
+}
+
+.slider-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.4);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    padding: 0;
+}
+
+.slider-dot:hover {
+    background: rgba(255,255,255,0.7);
+    transform: scale(1.2);
+}
+
+.slider-dot.active {
+    background: #fff;
+    transform: scale(1.2);
+    box-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+/* Slider Navigation Arrows */
+.slider-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 15;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.product-image-container:hover .slider-nav {
+    opacity: 1;
+}
+
+.slider-nav:hover {
+    background: rgba(0,0,0,0.8);
+    border-color: rgba(255,255,255,0.4);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.slider-nav.prev {
+    left: 10px;
+}
+
+.slider-nav.next {
+    right: 10px;
+}
+
+.slider-nav svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+}
+
+/* Slider Progress Bar */
+.slider-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--neon-primary), var(--neon-secondary));
+    z-index: 15;
+    transition: width 0.1s linear;
+}
+
+/* Product Overlay */
+.product-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.8) 100%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.product-card:hover .product-overlay {
+    opacity: 1;
+}
+
+/* Product Badge with Pulse */
+.product-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: linear-gradient(135deg, #FF6B00 0%, #FF8C00 100%);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
+    animation: badgePulse 2s ease-in-out infinite;
+}
+
+.product-badge::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 23px;
+    background: linear-gradient(135deg, #FF6B00, #FF8C00);
+    z-index: -1;
+    opacity: 0.5;
+    filter: blur(8px);
+    animation: badgeGlow 2s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes badgeGlow {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 0.8; }
+}
+
+/* Product Content */
+.product-content {
+    padding: 25px;
+    position: relative;
+    z-index: 10;
+}
+
+.product-name {
+    font-size: 22px;
+    color: #fff;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.product-description {
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+/* =============================================
+   PRODUCT LINKS
+   ============================================= */
+.product-links {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 20;
+}
+
+.product-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 25;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.product-link svg {
+    width: 18px;
+    height: 18px;
+}
+
+.product-link.buy {
+    background: linear-gradient(135deg, #FF6B00 0%, #FF8C00 100%);
+    color: #fff;
+}
+
+.product-link.buy:hover {
+    box-shadow: 0 8px 25px rgba(255, 107, 0, 0.4);
+    transform: translateY(-2px);
+}
+
+.product-link.instagram {
+    background: linear-gradient(135deg, #833AB4 0%, #FD1D1D 50%, #FCAF45 100%);
+    color: #fff;
+}
+
+.product-link.instagram:hover {
+    box-shadow: 0 8px 25px rgba(131, 58, 180, 0.4);
+    transform: translateY(-2px);
+}
+
+.product-link.youtube {
+    background: linear-gradient(135deg, #FF0000 0%, #CC0000 100%);
+    color: #fff;
+}
+
+.product-link.youtube:hover {
+    box-shadow: 0 8px 25px rgba(255, 0, 0, 0.4);
+    transform: translateY(-2px);
+}
+
+/* =============================================
+   SHOWROOM FOOTER
+   ============================================= */
+.showroom-footer {
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 15px 0;
+    z-index: 100;
+}
+
+.showroom-footer p {
+    color: rgba(255,255,255,0.3);
+    font-size: 13px;
+    letter-spacing: 2px;
+}
+
+/* =============================================
+   RESPONSIVE DESIGN
+   ============================================= */
+@media (max-width: 768px) {
+    /* Hero Responsive */
+    .hero-title {
+        font-size: 42px;
+        letter-spacing: 2px;
+    }
+    
+    .hero-subtitle {
+        font-size: 12px;
+        letter-spacing: 4px;
+    }
+    
+    .contact-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .social-links {
+        gap: 12px;
+    }
+    
+    .social-btn {
+        width: 45px;
+        height: 45px;
+    }
+    
+    /* Showroom Responsive */
+    .showroom-title {
+        font-size: 32px;
+    }
+    
+    .product-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 0 10px;
+    }
+    
+    .product-image-container {
+        height: 250px;
+    }
+    
+    .product-links {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .product-link {
+        justify-content: center;
+        flex: 0 0 auto;
+    }
+    
+    /* Link Preview Responsive */
+    .link-preview {
+        width: 280px;
+    }
+    
+    .link-preview-image {
+        height: 140px;
+    }
+}
+
+/* =============================================
+   LINK PREVIEW TOOLTIP
+   ============================================= */
+.link-preview {
+    position: fixed;
+    width: 320px;
+    background: linear-gradient(145deg, #1a1a1a 0%, #0d0d0d 100%);
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.8), 0 0 40px rgba(120, 119, 198, 0.2);
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px) scale(0.95);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.link-preview.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.link-preview-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    color: rgba(255,255,255,0.5);
+    font-size: 14px;
+}
+
+.link-preview-loading::after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    border: 2px solid rgba(255,255,255,0.2);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.link-preview-content {
+    padding: 0;
+}
+
+.link-preview-image {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.link-preview-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.link-preview-image.has-image .link-preview-image-placeholder {
+    display: none;
+}
+
+.link-preview-image-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+}
+
+.link-preview-image-placeholder svg {
+    width: 48px;
+    height: 48px;
+    opacity: 0.4;
+}
+
+.link-preview-image-placeholder.whatsapp {
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+}
+
+.link-preview-image-placeholder.instagram {
+    background: linear-gradient(135deg, #833AB4 0%, #FD1D1D 50%, #FCAF45 100%);
+}
+
+.link-preview-image-placeholder.seller {
+    background: linear-gradient(135deg, #FF6B00 0%, #FF8C00 100%);
+}
+
+.link-preview-image-placeholder.youtube {
+    background: linear-gradient(135deg, #FF0000 0%, #CC0000 100%);
+}
+
+.link-preview-image-placeholder.buy {
+    background: linear-gradient(135deg, #FF6B00 0%, #FF8C00 100%);
+}
+
+.link-preview-image-placeholder svg {
+    fill: rgba(255,255,255,0.9);
+    width: 56px;
+    height: 56px;
+}
+
+.link-preview-info {
+    padding: 16px;
+}
+
+.link-preview-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 6px;
+    line-height: 1.4;
+}
+
+.link-preview-description {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.5;
+    margin-bottom: 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.link-preview-url {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.link-preview-url svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+}
+
+.link-preview-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-top: 8px;
+}
+
+.link-preview-badge.whatsapp {
+    background: rgba(37, 211, 102, 0.2);
+    color: #25D366;
+}
+
+.link-preview-badge.instagram {
+    background: rgba(131, 58, 180, 0.2);
+    color: #E1306C;
+}
+
+.link-preview-badge.seller {
+    background: rgba(255, 107, 0, 0.2);
+    color: #FF8C00;
+}
+
+.link-preview-badge.youtube {
+    background: rgba(255, 0, 0, 0.2);
+    color: #FF0000;
+}
+
+.link-preview-badge.buy {
+    background: rgba(255, 107, 0, 0.2);
+    color: #FF8C00;
+}
+/* Loader */
+.loader {
+  position: fixed;
+  z-index: 99999;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100vw; height: 100vh;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loader img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}

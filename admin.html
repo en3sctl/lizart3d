@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Admin Paneli</title>
+    <link rel="icon" type="image/png" href="3d-iguana.webp">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Dark Mode Toggle -->
+    <button id="darkModeToggle" class="dark-mode-toggle" title="Tema Değiştir">
+        <span class="toggle-icon">🌙</span>
+    </button>
+
+    <div class="container">
+        <!-- Logo Section -->
+        <a href="/Anasayfa" class="logo-section">
+            <img src="3d-iguana.webp" alt="LizArt Logo" class="logo-img">
+            <span class="logo-text">LizArt3D</span>
+        </a>
+
+        <!-- Giriş Ekranı -->
+        <div id="loginScreen" class="screen">
+            <div class="icon">🔒</div>
+            <h2>Admin Girişi</h2>
+            <label for="adminPassword" class="visually-hidden">Admin Şifresi</label>
+            <input type="password" id="adminPassword" placeholder="Admin Şifresi">
+            <button id="loginBtn" class="btn primary">Giriş</button>
+            <p id="loginError" class="error hidden">Şifre yanlış!</p>
+        </div>
+
+        <!-- Admin Panel -->
+        <div id="adminPanel" class="screen hidden">
+            <div class="header">
+                <h2>🎛️ QR Yönetim Paneli</h2>
+                <button id="logoutBtn" class="btn small">Çıkış</button>
+            </div>
+
+            <!-- Yeni QR Oluştur -->
+            <div class="card">
+                <h3>➕ Yeni QR Kod Oluştur</h3>
+                <div class="form-group">
+                    <label for="qrName">QR Kod Adı (opsiyonel)</label>
+                    <input type="text" id="qrName" placeholder="Örn: Araç QR">
+                </div>
+                <button id="createQrBtn" class="btn primary">QR Kod Oluştur</button>
+                
+                <!-- Oluşturulan QR Bilgileri -->
+                <div id="newQrInfo" class="qr-info hidden">
+                    <div class="success-box">
+                        <p><strong>QR Kod Oluşturuldu!</strong></p>
+                        <div class="info-row">
+                            <span>Güvenlik Kodu:</span>
+                            <code id="newSecurityCode"></code>
+                            <button class="copy-btn" data-target="newSecurityCode">📋</button>
+                        </div>
+                        <div class="info-row">
+                            <span>QR Link:</span>
+                            <code id="newQrLink"></code>
+                            <button class="copy-btn" data-target="newQrLink">📋</button>
+                        </div>
+                        <div id="qrCodeImage" class="qr-image"></div>
+                        <button id="downloadQrBtn" class="btn primary" style="margin-top: 15px;">📥 QR Kodu İndir (PNG)</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- QR Listesi -->
+            <div class="card">
+                <h3>📋 Tüm QR Kodlar</h3>
+                <div id="qrList" class="qr-list">
+                    <p class="loading">Yükleniyor...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+    <script src="darkmode.js"></script>
+    <script src="console-art.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>
