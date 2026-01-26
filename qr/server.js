@@ -114,10 +114,20 @@ app.post('/api/verify-admin', authLimiter, (req, res) => {
     }
 });
 
-// API endpoint to get base URL
+// API endpoint to get base URL and Firebase config
 app.get('/api/config', (req, res) => {
     res.json({
-        baseUrl: process.env.BASE_URL || `http://${HOST}:${PORT}`
+        baseUrl: process.env.BASE_URL || `http://${HOST}:${PORT}`,
+        firebase: {
+            apiKey: process.env.FIREBASE_API_KEY,
+            authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+            databaseURL: process.env.FIREBASE_DATABASE_URL,
+            projectId: process.env.FIREBASE_PROJECT_ID,
+            storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+            messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+            appId: process.env.FIREBASE_APP_ID,
+            measurementId: process.env.FIREBASE_MEASUREMENT_ID
+        }
     });
 });
 
@@ -135,26 +145,17 @@ app.get('/admin', (req, res) => {
     res.sendFile(path.join(__dirname, 'admin.html'));
 });
 
+// QR sayfası - Ana sayfa
 app.get('/qr', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// Anasayfa - Portfolyo sayfası
-app.get('/Anasayfa', (req, res) => {
-    res.sendFile(path.join(__dirname, 'anasayfa.html'));
-});
-
-// Küçük harfli versiyon da desteklensin
-app.get('/anasayfa', (req, res) => {
-    res.sendFile(path.join(__dirname, 'anasayfa.html'));
-});
-
-// Serve Anasayfa for root (portfolio as homepage)
+// Ana sayfa QR'a yönlendirsin
 app.get('/', (req, res) => {
-    res.redirect('/Anasayfa');
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.listen(PORT, HOST, () => {
-    console.log(`Server running at http://${HOST}:${PORT}`);
+    console.log(`QR Management System running at http://${HOST}:${PORT}`);
     console.log(`Admin panel: http://${HOST}:${PORT}/${ADMIN_PATH}`);
 });

@@ -1,18 +1,44 @@
-﻿// Firebase Configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyCjiq6OzT1YapcTd1bonGNmF_4EgYlDSOY",
-    authDomain: "qr-phone-f52a5.firebaseapp.com",
-    databaseURL: "https://qr-phone-f52a5-default-rtdb.firebaseio.com",
-    projectId: "qr-phone-f52a5",
-    storageBucket: "qr-phone-f52a5.firebasestorage.app",
-    messagingSenderId: "794998676684",
-    appId: "1:794998676684:web:9be8086c5fbc372ece7669",
-    measurementId: "G-XCCRJNY52G"
-};
+﻿// Firebase will be initialized after loading config from server
+let db = null;
 
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
+// Load config from server and initialize Firebase (with cache)
+async function loadConfig() {
+    try {
+        // Check sessionStorage cache first
+        const cachedConfig = sessionStorage.getItem('firebaseConfig');
+        const cachedBaseUrl = sessionStorage.getItem('baseUrl');
+        let firebaseConfig;
+        
+        if (cachedConfig && cachedBaseUrl) {
+            firebaseConfig = JSON.parse(cachedConfig);
+            BASE_URL = `${cachedBaseUrl}/qr`;
+        } else {
+            const response = await fetch('/api/config');
+            const config = await response.json();
+            BASE_URL = `${config.baseUrl}/qr`;
+            firebaseConfig = config.firebase;
+            // Cache for this session
+            if (firebaseConfig) {
+                sessionStorage.setItem('firebaseConfig', JSON.stringify(firebaseConfig));
+                sessionStorage.setItem('baseUrl', config.baseUrl);
+            }
+        }
+        
+        // Initialize Firebase with config
+        if (firebaseConfig && firebaseConfig.apiKey) {
+            firebase.initializeApp(firebaseConfig);
+            db = firebase.database();
+            return true;
+        } else {
+            console.error('Firebase config not found');
+            return false;
+        }
+    } catch (error) {
+        console.error('Config yüklenemedi:', error);
+        BASE_URL = `${window.location.origin}/qr`;
+        return false;
+    }
+}
 
 // Decryption helper function (calls server API)
 async function decryptData(text) {
@@ -33,18 +59,6 @@ async function decryptData(text) {
 
 // Base URL for QR codes (will be loaded from server)
 let BASE_URL = '';
-
-// Load config from server
-async function loadConfig() {
-    try {
-        const response = await fetch('/api/config');
-        const config = await response.json();
-        BASE_URL = `${config.baseUrl}/qr`;
-    } catch (error) {
-        console.error('Config yüklenemedi:', error);
-        BASE_URL = `${window.location.origin}/qr`;
-    }
-}
 
 // DOM Elements
 const loginScreen = document.getElementById('loginScreen');

@@ -1,18 +1,38 @@
-// Firebase Configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyCjiq6OzT1YapcTd1bonGNmF_4EgYlDSOY",
-    authDomain: "qr-phone-f52a5.firebaseapp.com",
-    databaseURL: "https://qr-phone-f52a5-default-rtdb.firebaseio.com",
-    projectId: "qr-phone-f52a5",
-    storageBucket: "qr-phone-f52a5.firebasestorage.app",
-    messagingSenderId: "794998676684",
-    appId: "1:794998676684:web:9be8086c5fbc372ece7669",
-    measurementId: "G-XCCRJNY52G"
-};
+// Firebase will be initialized after loading config from server
+let db = null;
 
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
+// Load Firebase config from server and initialize (with cache)
+async function initFirebase() {
+    try {
+        // Check sessionStorage cache first
+        const cachedConfig = sessionStorage.getItem('firebaseConfig');
+        let firebaseConfig;
+        
+        if (cachedConfig) {
+            firebaseConfig = JSON.parse(cachedConfig);
+        } else {
+            const response = await fetch('/api/config');
+            const config = await response.json();
+            firebaseConfig = config.firebase;
+            // Cache for this session
+            if (firebaseConfig) {
+                sessionStorage.setItem('firebaseConfig', JSON.stringify(firebaseConfig));
+            }
+        }
+        
+        if (firebaseConfig && firebaseConfig.apiKey) {
+            firebase.initializeApp(firebaseConfig);
+            db = firebase.database();
+            return true;
+        } else {
+            console.error('Firebase config not found');
+            return false;
+        }
+    } catch (error) {
+        console.error('Failed to load Firebase config:', error);
+        return false;
+    }
+}
 
 // Encryption helper functions (calls server API)
 async function encryptData(text) {
@@ -462,6 +482,14 @@ function hashSecurityCode(code) {
 
 // Initialize app
 async function init() {
+    // First, initialize Firebase
+    const firebaseReady = await initFirebase();
+    if (!firebaseReady) {
+        console.error('Firebase initialization failed');
+        showScreen(notFoundScreen);
+        return;
+    }
+    
     currentQrId = getQrIdFromUrl();
     
     if (!currentQrId) {
@@ -585,8 +613,16 @@ async function showRedirectScreen() {
     const phoneNumber = currentQrData.phone.replace(/\s/g, '');
     callLink.href = `tel:${phoneNumber}`;
     
-    // WhatsApp link - remove + and spaces, keep country code
-    const whatsappNumber = phoneNumber.replace(/[^0-9]/g, '');
+    // WhatsApp link - +90 Türkiye kodu ile yönlendir
+    let whatsappNumber = phoneNumber.replace(/[^0-9]/g, '');
+    // Eğer numara 0 ile başlıyorsa, 0'ı kaldırıp başına 90 ekle
+    if (whatsappNumber.startsWith('0')) {
+        whatsappNumber = '90' + whatsappNumber.substring(1);
+    } 
+    // Eğer numara 90 ile başlamıyorsa başına 90 ekle
+    else if (!whatsappNumber.startsWith('90')) {
+        whatsappNumber = '90' + whatsappNumber;
+    }
     const whatsappLink = document.getElementById('whatsappLink');
     whatsappLink.href = `https://wa.me/${whatsappNumber}`;
     
