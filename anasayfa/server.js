@@ -32,6 +32,10 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+app.get('/googledc595dd9d970fa53.html', (req, res) => {
+    res.sendFile(__dirname + '/googledc595dd9d970fa53.html');
+});
+
 // Alternatif rotalar
 app.get('/Anasayfa', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
