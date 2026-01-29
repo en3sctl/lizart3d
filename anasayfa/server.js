@@ -16,7 +16,11 @@ app.use((req, res, next) => {
     next();
 });
 
-// Block direct access to .html files
+app.get('/googledc595dd9d970fa53.html', (req, res) => {
+    res.sendFile(__dirname + '/googledc595dd9d970fa53.html');
+});
+
+// Block direct access to .html files (Diğer HTML dosyalarına erişimi engelle)
 app.use((req, res, next) => {
     if (req.path.endsWith('.html')) {
         return res.status(404).send('Not Found');
@@ -24,16 +28,14 @@ app.use((req, res, next) => {
     next();
 });
 
-// Serve static files (CSS, JS, images, fonts)
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(path.join(__dirname), {
+    maxAge: '1y', 
+    etag: false
+}));
 
 // Anasayfa - Ana sayfa
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
-});
-
-app.get('/googledc595dd9d970fa53.html', (req, res) => {
-    res.sendFile(__dirname + '/googledc595dd9d970fa53.html');
 });
 
 // Alternatif rotalar
