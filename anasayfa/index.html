@@ -1,64 +1,77 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- DNS Prefetch ve Preconnect için Cloudinary optimizasyonu -->
+    <link rel="dns-prefetch" href="https://res.cloudinary.com">
+    <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
 
     <title>LizArt3D - 3D Tasarım & Baskı</title>
     <meta name="description" content="LizArt3D ile 3D baskı ve özel tasarım ürünler. Hızlı üretim, uygun fiyat, kaliteli hizmet!">
     <meta name="keywords" content="3D baskı, 3D yazıcı, özel tasarım, LizArt3D, figür, baskı hizmeti">
     <meta name="robots" content="index, follow">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="LizArt3D">
 
     <meta property="og:title" content="LizArt3D - 3D Tasarım & Baskı">
     <meta property="og:description" content="3D baskı ve özel tasarım ürünler!">
-    <meta property="og:image" content="https://lizart3d.com.tr/lizart3d-logo.webp">
+    <meta property="og:image" content="https://res.cloudinary.com/ddv7evrxs/image/upload/w_500,h_500,c_fill,f_auto,q_auto:eco/v1770131962/3d-iguana_cnxexj.png">
     <meta property="og:url" content="https://lizart3d.com.tr/">
     <meta property="og:type" content="website">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="LizArt3D - 3D Tasarım & Baskı">
     <meta name="twitter:description" content="3D baskı ve özel tasarım ürünler!">
-    <meta name="twitter:image" content="https://lizart3d.com.tr/lizart3d-logo.webp">
+    <meta name="twitter:image" content="https://res.cloudinary.com/ddv7evrxs/image/upload/w_500,h_500,c_fill,f_auto,q_auto:eco/v1770131962/3d-iguana_cnxexj.png">
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "LizArt3D",
-  "url": "https://lizart3d.com.tr/",
-  "logo": "https://lizart3d.com.tr/lizart3d-logo.webp",
-  "description": "Profesyonel 3D baskı ve tasarım hizmetleri.",
-  "sameAs": [
-    "https://www.instagram.com/lizart3d/"
-  ],
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "contactType": "customer service",
-    "areaServed": "TR",
-    "availableLanguage": "Turkish"
-  }
-}
-</script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "LizArt3D",
+      "url": "https://lizart3d.com.tr/",
+      "logo": "https://res.cloudinary.com/ddv7evrxs/image/upload/w_180,h_180,c_fill,f_auto,q_auto:eco/v1770131962/3d-iguana_cnxexj.png",
+      "description": "Profesyonel 3D baskı ve tasarım hizmetleri.",
+      "sameAs": [
+        "https://www.instagram.com/lizart3d/"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "areaServed": "TR",
+        "availableLanguage": "Turkish"
+      }
+    }
+    </script>
 
-    <title>LizArt3D - 3D Tasarım & Baskı</title>
-    <link rel="icon" type="image/png" href="lizart3d-logo.webp">
-    <link rel="preload" href="rakesly%20rg%20it.ttf" as="font" type="font/ttf" crossorigin>
-    <link rel="stylesheet" href="anasayfa.css">
+    <link rel="icon" type="image/png" href="https://res.cloudinary.com/ddv7evrxs/image/upload/w_96,h_96,c_fill,f_auto,q_auto:eco/v1770131962/3d-iguana_cnxexj.png">
+    
+    <!-- Kritik kaynakları preload et -->
+    <link rel="preload" href="main.js" as="script">
+    <link rel="preload" href="products.json" as="fetch" crossorigin>
+    <link rel="preload" href="https://res.cloudinary.com/ddv7evrxs/raw/upload/v1770142126/rakesly_rg_it_czpsdl.ttf" as="font" type="font/ttf" crossorigin>
+    
+    <!-- Critical CSS için preload -->
+    <link rel="preload" href="anasayfa.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="anasayfa.css"></noscript>
+    
+    <!-- Fallback script for older browsers -->
+    <script>
+    !function(e){"use strict";var t=function(t,n,r){var o,i=e.document,c=i.createElement("link");if(n)o=n;else{var a=(i.body||i.getElementsByTagName("head")[0]).childNodes;o=a[a.length-1]}var d=i.styleSheets;c.rel="stylesheet",c.href=t,c.media="only x",function e(t){if(i.body)return t();setTimeout(function(){e(t)})}(function(){o.parentNode.insertBefore(c,n?o:o.nextSibling)});var l=function(e){for(var t=c.href,n=d.length;n--;)if(d[n].href===t)return e();setTimeout(function(){l(e)})};return c.addEventListener&&c.addEventListener("load",r),c.onloadcssdefined=l,l(r),c};"undefined"!=typeof exports?exports.loadCSS=t:e.loadCSS=t}("undefined"!=typeof global?global:this);
+    </script>
 </head>
 
 <body>
 
 <div id="loader" class="loader">
-  <img src="lizart3d-loader.gif" alt="LizArt3D Yükleniyor...">
+  <img src="https://res.cloudinary.com/ddv7evrxs/image/upload/w_200,h_200,c_fill,f_auto,q_auto/v1770132970/lizart3d-loader_gekzyd.gif" alt="LizArt3D Yükleniyor...">
 </div>
 
     <!-- Link Preview Tooltip -->
     <div class="link-preview" id="linkPreview">
         <div class="link-preview-content">
             <div class="link-preview-image" id="previewImageContainer">
-                <img id="previewImage" src="" alt="Preview">
                 <div class="link-preview-image-placeholder" id="previewPlaceholder">
                     <svg id="previewIcon" viewBox="0 0 24 24"></svg>
                 </div>
@@ -107,7 +120,7 @@
             <a href="/" class="logo-3d-container">
                 <div class="neon-ring"></div>
                 <div class="glow-ring"></div>
-                <img src="lizart3d-logo.webp" alt="LizArt Logo" class="hero-logo" fetchpriority="high">
+                <img src="https://res.cloudinary.com/ddv7evrxs/image/upload/w_200,h_200,c_fill,f_auto,q_auto:eco/v1770131962/3d-iguana_cnxexj.png" alt="LizArt Logo" class="hero-logo" fetchpriority="high">
             </a>
             
             <h1 class="hero-title">LizArt3D</h1>
@@ -127,11 +140,23 @@
                         <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                     </svg>
                 </a>
-                
+
                 <!-- Satıcı Profili (Örn: Trendyol, Etsy, vb.) -->
                 <a href="https://SATICI_PROFIL_LINKINIZ" class="social-btn seller" target="_blank" title="Satıcı Profili">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff">
                         <path d="M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm7 17H5V8h14v12zm-7-8c-1.66 0-3-1.34-3-3H7c0 2.76 2.24 5 5 5s5-2.24 5-5h-2c0 1.66-1.34 3-3 3z"/>
+                    </svg>
+                </a>
+
+                
+                <!-- Gmail -->
+                <a href="mailto:info@lizart3d.com.tr" class="social-btn gmail" target="_blank" title="E-posta Gönder">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="28" height="28">
+                        <path fill="#4285F4" d="M45,16.2l-5,2.75l-5,4.75L35,40h7c1.657,0,3-1.343,3-3V16.2z"/>
+                        <path fill="#34A853" d="M3,16.2l3.614,1.71L13,23.7V40H6c-1.657,0-3-1.343-3-3V16.2z"/>
+                        <polygon fill="#FBBC04" points="35,11.2 24,19.45 13,11.2 12,17 13,23.7 24,31.95 35,23.7 36,17"/>
+                        <path fill="#EA4335" d="M3,12.298V16.2l10,7.5V11.2L9.876,8.859C9.132,8.301,8.228,8,7.298,8h0C4.924,8,3,9.924,3,12.298z"/>
+                        <path fill="#C5221F" d="M45,12.298V16.2l-10,7.5V11.2l3.124-2.341C38.868,8.301,39.772,8,40.702,8h0 C43.076,8,45,9.924,45,12.298z"/>
                     </svg>
                 </a>
             </div>
@@ -145,6 +170,7 @@
     </section>
 
     <!-- Showroom Section -->
+    <main>
     <section id="showroom" class="showroom-section">
         <div class="showroom-header">
             <div class="sparkle"></div>
@@ -154,771 +180,27 @@
             <p class="showroom-subtitle">3D Baskı Ürünler</p>
         </div>
 
-        <div class="product-grid">
-            <!-- Ürün 1 -->
-            <div class="product-card">
-                <div class="product-image-container">
-                    <img src="showroom/anahtarliklar/lizart3d-hareketli-ahtapot-anahtarligi.webp" alt="Ürün 1 - Görsel 1" class="product-image active">
-                    <img src="showroom/anahtarliklar/lizart3d-eklemli-oyuncak-ahtapot.webp" alt="Ürün 1 - Görsel 2" class="product-image">
-                    <img src="showroom/anahtarliklar/lizart3d-ozel-tasarim-3d-baski-ahtapot.webp" alt="Ürün 1 - Görsel 3" class="product-image">
-                    <div class="product-overlay"></div>
-                    <span class="product-badge">Satışta</span>
-                    <button class="slider-nav prev" aria-label="Önceki görsel">
-                        <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
-                    </button>
-                    <button class="slider-nav next" aria-label="Sonraki görsel">
-                        <svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg>
-                    </button>
-                    <div class="slider-dots"></div>
-                    <div class="slider-progress"></div>
-                </div>
-                <div class="product-content">
-                    <h3 class="product-name">Hareketli Mini Ahtapot</h3>
-                    <p class="product-description">Yüksek kaliteli ve çevre dostu PLA filament ile üretilen bu mini ahtapot, yüksek kalite de ve dayanıklı eklem yapısıyla öne çıkıyor.</p>
-                    <div class="product-links">
-                        <a href="#" class="product-link buy" target="_blank" 
-                           data-preview-image="showroom/anahtarliklar/lizart3d-hareketli-ahtapot-anahtarligi.webp" 
-                           data-preview-title="Hareketli Mini Ahtapot - Satın Al" 
-                           data-preview-desc="Bu ürünü hemen sepetine ekle! Yüksek kaliteli PLA filament ile üretildi.">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm7 17H5V8h14v12z"/></svg>
-                            Satın Al
-                        </a>
-                        <a href="#" class="product-link instagram" target="_blank"
-                           data-preview-image="showroom/anahtarliklar/lizart3d-hareketli-ahtapot-anahtarligi.webp" 
-                           data-preview-title="Mini Ahtapot - Instagram" 
-                           data-preview-desc="Bu ürünün Instagram gönderisine göz atın ve beğenmeyi unutmayın!">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                            Instagram
-                        </a>
-                        <a href="#" class="product-link youtube" target="_blank"
-                           data-preview-image="showroom/anahtarliklar/lizart3d-hareketli-ahtapot-anahtarligi.webp" 
-                           data-preview-title="Mini Ahtapot - Tanıtım Videosu" 
-                           data-preview-desc="Hareketli mini ahtapotun nasıl üretildiğini ve hareket ettiğini bu videoda izleyebilirsiniz!">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                            Video
-                        </a>
-                    </div>
-                </div>
-            </div>
+        <!-- Filter Buttons -->
+        <div class="filter-container" id="filterContainer">
+            <!-- Filtre butonları dinamik olarak oluşturulacak -->
+        </div>
 
-            <!-- Ürün 2 -->
-            <div class="product-card">
-                <div class="product-image-container">
-                    <img src="showroom/anahtarliklar/lizart3d-pembe-kalp-makaron-fidget-oyuncak.gif" alt="Ürün 2 - Görsel 1" class="product-image active">
-                    <img src="showroom/anahtarliklar/lizart3d-sevimli-yuzlu-kalp-anahtarlik.webp" alt="Ürün 2 - Görsel 2" class="product-image">
-                    <img src="showroom/anahtarliklar/lizart3d-mekanik-switch-detay.webp" alt="Ürün 2 - Görsel 3" class="product-image">
-                    <div class="product-overlay"></div>
-                    <span class="product-badge">Satışta</span>
-                    <button class="slider-nav prev" aria-label="Önceki görsel">
-                        <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
-                    </button>
-                    <button class="slider-nav next" aria-label="Sonraki görsel">
-                        <svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg>
-                    </button>
-                    <div class="slider-dots"></div>
-                    <div class="slider-progress"></div>
-                </div>
-                <div class="product-content">
-                    <h3 class="product-name">Kalp Makaron "Clicky" Anahtarlık</h3>
-                    <p class="product-description">Sevdiklerinize ya da kendinize verebileceğiniz en şirin hediye ile tanışın! Bu makaronlar sadece birer aksesuar değil, aynı zamanda stresinizi atmanıza yardımcı olacak eğlenceli birer oyuncak.</p>
-                    <div class="product-links">
-                        <a href="#" class="product-link buy" target="_blank" 
-                           data-preview-image="showroom/anahtarliklar/lizart3d-pembe-kalp-makaron-fidget-oyuncak.gif" 
-                           data-preview-title="Kalp Makaron Clicky Anahtarlık - Satın Al" 
-                           data-preview-desc="Bu ürünü hemen sepetine ekle! Yüksek kaliteli PLA filament ile üretildi.">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm7 17H5V8h14v12z"/></svg>
-                            Satın Al
-                        </a>
-                        <a href="#" class="product-link instagram" target="_blank"
-                           data-preview-image="showroom/anahtarliklar/lizart3d-pembe-kalp-makaron-fidget-oyuncak.gif" 
-                           data-preview-title="Kalp Makaron Clicky Anahtarlık - Instagram" 
-                           data-preview-desc="Bu ürünün Instagram gönderisine göz atın ve beğenmeyi unutmayın!">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                            Instagram
-                        </a>
-                        <a href="#" class="product-link youtube" target="_blank"
-                           data-preview-image="showroom/anahtarliklar/lizart3d-pembe-kalp-makaron-fidget-oyuncak.gif" 
-                           data-preview-title="Kalp Makaron Clicky Anahtarlık - Tanıtım Videosu" 
-                           data-preview-desc="Fidget kalp makaronun nasıl ses çıkardığını ve üretimini bu videoda izleyebilirsiniz!">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                            Video
-                        </a>
-                    </div>
-                </div>
-            </div>
+        <div class="product-grid" id="productGrid">
+            <!-- Ürünler JSON'dan yüklenecek -->
+        </div>
 
-            <!-- Ürün 3 -->
-            <div class="product-card">
-                <div class="product-image-container">
-                    <img src="showroom/anahtarliklar/lizart3d-stranger-things-demogorgon-figuru.webp" alt="Ürün 3 - Görsel 1" class="product-image active">
-                    <img src="showroom/anahtarliklar/lizart3d-mini-canavar-masaustu-dekor-oyuncak.webp" alt="Ürün 3 - Görsel 2" class="product-image">
-                    <img src="showroom/anahtarliklar/lizart3d-ozel-tasarim-3d-baski-korku-karakterleri.webp" alt="Ürün 3 - Görsel 2" class="product-image">
-                    <div class="product-overlay"></div>
-                    <span class="product-badge">Satışta</span>
-                    <button class="slider-nav prev" aria-label="Önceki görsel">
-                        <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
-                    </button>
-                    <button class="slider-nav next" aria-label="Sonraki görsel">
-                        <svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg>
-                    </button>
-                    <div class="slider-dots"></div>
-                    <div class="slider-progress"></div>
-                </div>
-                <div class="product-content">
-                    <h3 class="product-name">Demogorgon Hareketli Anahtarlık</h3>
-                    <p class="product-description">Upside Down'dan kaçan bir misafirimiz var! Bu mini Demogorgon, esnek vücuduyla elinizde kıpır kıpır ediyor.</p>
-                    <div class="product-links">
-                        <a href="#" class="product-link buy" target="_blank" 
-                           data-preview-image="showroom/anahtarliklar/lizart3d-stranger-things-demogorgon-figuru.webp" 
-                           data-preview-title="Demogorgon Hareketli Anahtarlık - Satın Al" 
-                           data-preview-desc="Bu ürünü hemen sepetine ekle! Yüksek kaliteli PLA filament ile üretildi.">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm7 17H5V8h14v12z"/></svg>
-                            Satın Al
-                        </a>
-                        <a href="#" class="product-link instagram" target="_blank"
-                           data-preview-image="showroom/anahtarliklar/lizart3d-stranger-things-demogorgon-figuru.webp" 
-                           data-preview-title="Demogorgon Hareketli Anahtarlık - Instagram" 
-                           data-preview-desc="Bu ürünün Instagram gönderisine göz atın ve beğenmeyi unutmayın!">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                            Instagram
-                        </a>
-                        <a href="#" class="product-link youtube" target="_blank"
-                           data-preview-image="showroom/anahtarliklar/lizart3d-stranger-things-demogorgon-figuru.webp" 
-                           data-preview-title="Demogorgon Hareketli Anahtarlık - Tanıtım Videosu" 
-                           data-preview-desc="Demogorgon hareketli anahtarlığın nasıl hareket ettiğini ve üretimini bu videoda izleyebilirsiniz!">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                            Video
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Ürün 4 -->
-            <div class="product-card">
-                <div class="product-image-container">
-                    <img src="showroom/anahtarliklar/lizart3d-eklemli-hareketli-sevimli-penguen-figuru.webp" alt="Ürün 4 - Görsel 1" class="product-image active">
-                    <img src="showroom/anahtarliklar/lizart3d-mini-fidget-stres-oyuncagi-penguen-ailesi.webp" alt="Ürün 4 - Görsel 2" class="product-image">
-                    <div class="product-overlay"></div>
-                    <span class="product-badge">Satışta</span>
-                    <button class="slider-nav prev" aria-label="Önceki görsel">
-                        <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
-                    </button>
-                    <button class="slider-nav next" aria-label="Sonraki görsel">
-                        <svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg>
-                    </button>
-                    <div class="slider-dots"></div>
-                    <div class="slider-progress"></div>
-                </div>
-                <div class="product-content">
-                    <h3 class="product-name">Hareketli Penguin Anahtarlık</h3>
-                    <p class="product-description">Bu minik penguen elinizde kıpır kıpır! ❄️ Tamamen hareketli eklemleriyle, yeni favori aksesuarınız olacak.</p>
-                    <div class="product-links">
-                        <a href="#" class="product-link buy" target="_blank" 
-                           data-preview-image="showroom/anahtarliklar/lizart3d-eklemli-hareketli-sevimli-penguen-figuru.webp" 
-                           data-preview-title="Hareketli Penguin Anahtarlık - Satın Al" 
-                           data-preview-desc="Bu ürünü hemen sepetine ekle! Yüksek kaliteli PLA filament ile üretildi.">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm7 17H5V8h14v12z"/></svg>
-                            Satın Al
-                        </a>
-                        <a href="#" class="product-link instagram" target="_blank"
-                           data-preview-image="showroom/anahtarliklar/lizart3d-eklemli-hareketli-sevimli-penguen-figuru.webp" 
-                           data-preview-title="Hareketli Penguin Anahtarlık - Instagram" 
-                           data-preview-desc="Bu ürünün Instagram gönderisine göz atın ve beğenmeyi unutmayın!">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                            Instagram
-                        </a>
-                        <a href="#" class="product-link youtube" target="_blank"
-                           data-preview-image="showroom/anahtarliklar/lizart3d-eklemli-hareketli-sevimli-penguen-figuru.webp" 
-                           data-preview-title="Hareketli Penguin Anahtarlık - Tanıtım Videosu" 
-                           data-preview-desc="Hareketli penguen anahtarlığın nasıl hareket ettiğini bu videoda izleyebilirsiniz!">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                            Video
-                        </a>
-                    </div>
-                </div>
-            </div>
+        <!-- Bottom Pagination -->
+        <div class="pagination pagination-bottom" id="pagination">
+            <!-- Sayfalama butonları buraya gelecek -->
         </div>
 
         <div class="showroom-footer">
-            <p>© 2026 LizArt3D - Tüm hakları saklıdır.</p>
+            <p>&copy; <span id="yil"></span> LizArt3D | Tüm Hakları Saklıdır</p>
         </div>
     </section>
+    </main>
 
-    <script>
-        // Mouse follower effect
-        const mouseGlow = document.getElementById('mouseGlow');
-        let mouseX = 0, mouseY = 0;
-        let glowX = 0, glowY = 0;
-
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
-
-        function animateGlow() {
-            glowX += (mouseX - glowX) * 0.1;
-            glowY += (mouseY - glowY) * 0.1;
-            mouseGlow.style.left = glowX + 'px';
-            mouseGlow.style.top = glowY + 'px';
-            requestAnimationFrame(animateGlow);
-        }
-        animateGlow();
-
-        // Parallax effect on mouse move for logo
-        const logoContainer = document.querySelector('.logo-3d-container');
-
-        document.addEventListener('mousemove', (e) => {
-            const centerX = window.innerWidth / 2;
-            const centerY = window.innerHeight / 2;
-            const moveX = (e.clientX - centerX) / centerX;
-            const moveY = (e.clientY - centerY) / centerY;
-
-            // Subtle tilt on logo
-            if (logoContainer) {
-                logoContainer.style.transform = `rotateX(${moveY * -5}deg) rotateY(${moveX * 5}deg)`;
-            }
-        });
-
-        // Reset on mouse leave
-        document.addEventListener('mouseleave', () => {
-            if (logoContainer) {
-                logoContainer.style.transform = '';
-            }
-        });
-
-        // Scroll Animation for Showroom
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        // Observe showroom header
-        const showroomHeader = document.querySelector('.showroom-header');
-        if (showroomHeader) {
-            observer.observe(showroomHeader);
-        }
-
-        // Observe product cards with staggered delay
-        const productCards = document.querySelectorAll('.product-card');
-        productCards.forEach((card, index) => {
-            card.style.transitionDelay = `${index * 0.15}s`;
-            observer.observe(card);
-        });
-
-        // =============================================
-        // IMAGE SLIDER FUNCTIONALITY
-        // =============================================
-        function initImageSliders() {
-            const sliders = document.querySelectorAll('.product-image-container');
-            
-            sliders.forEach(container => {
-                const images = container.querySelectorAll('.product-image');
-                const dotsContainer = container.querySelector('.slider-dots');
-                const prevBtn = container.querySelector('.slider-nav.prev');
-                const nextBtn = container.querySelector('.slider-nav.next');
-                const progressBar = container.querySelector('.slider-progress');
-                
-                if (images.length <= 1) {
-                    // Tek görsel varsa kontrolleri gizle
-                    if (dotsContainer) dotsContainer.style.display = 'none';
-                    if (prevBtn) prevBtn.style.display = 'none';
-                    if (nextBtn) nextBtn.style.display = 'none';
-                    if (progressBar) progressBar.style.display = 'none';
-                    return;
-                }
-                
-                let currentIndex = 0;
-                let autoPlayInterval = null;
-                let progressInterval = null;
-                let isHovering = false;
-                const autoPlayDelay = 4000; // 4 saniye
-                let progressWidth = 0;
-                
-                // Dot'ları oluştur
-                images.forEach((_, index) => {
-                    const dot = document.createElement('button');
-                    dot.classList.add('slider-dot');
-                    dot.setAttribute('aria-label', 'Slayt ' + (index + 1) + ' Göster');
-                    if (index === 0) dot.classList.add('active');
-                    dot.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        goToSlide(index);
-                        resetAutoPlay();
-                    });
-                    dotsContainer.appendChild(dot);
-                });
-                
-                const dots = dotsContainer.querySelectorAll('.slider-dot');
-                
-                function goToSlide(index) {
-                    images[currentIndex].classList.remove('active');
-                    dots[currentIndex].classList.remove('active');
-                    
-                    currentIndex = index;
-                    if (currentIndex >= images.length) currentIndex = 0;
-                    if (currentIndex < 0) currentIndex = images.length - 1;
-                    
-                    images[currentIndex].classList.add('active');
-                    dots[currentIndex].classList.add('active');
-                    
-                    // Progress bar'ı sıfırla
-                    progressWidth = 0;
-                    if (progressBar) progressBar.style.width = '0%';
-                }
-                
-                function nextSlide() {
-                    goToSlide(currentIndex + 1);
-                }
-                
-                function prevSlide() {
-                    goToSlide(currentIndex - 1);
-                }
-                
-                function startProgress() {
-                    progressWidth = 0;
-                    if (progressBar) progressBar.style.width = '0%';
-                    
-                    if (progressInterval) clearInterval(progressInterval);
-                    progressInterval = setInterval(() => {
-                        progressWidth += 100 / (autoPlayDelay / 50);
-                        if (progressBar) progressBar.style.width = Math.min(progressWidth, 100) + '%';
-                    }, 50);
-                }
-                
-                function startAutoPlay() {
-                    if (autoPlayInterval) clearInterval(autoPlayInterval);
-                    startProgress();
-                    autoPlayInterval = setInterval(() => {
-                        if (!isHovering) {
-                            nextSlide();
-                            startProgress();
-                        }
-                    }, autoPlayDelay);
-                }
-                
-                function resetAutoPlay() {
-                    startAutoPlay();
-                }
-                
-                function stopAutoPlay() {
-                    if (autoPlayInterval) clearInterval(autoPlayInterval);
-                    if (progressInterval) clearInterval(progressInterval);
-                }
-                
-                // Event listeners
-                if (prevBtn) {
-                    prevBtn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        prevSlide();
-                        resetAutoPlay();
-                    });
-                }
-                
-                if (nextBtn) {
-                    nextBtn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        nextSlide();
-                        resetAutoPlay();
-                    });
-                }
-                
-                // Mouse hover durumunda kullanıcı kontrol edebilsin
-                container.addEventListener('mouseenter', () => {
-                    isHovering = true;
-                    stopAutoPlay();
-                });
-                
-                container.addEventListener('mouseleave', () => {
-                    isHovering = false;
-                    startAutoPlay();
-                });
-                
-                // Keyboard navigation (when focused)
-                container.setAttribute('tabindex', '0');
-                container.addEventListener('keydown', (e) => {
-                    if (e.key === 'ArrowLeft') {
-                        prevSlide();
-                        resetAutoPlay();
-                    } else if (e.key === 'ArrowRight') {
-                        nextSlide();
-                        resetAutoPlay();
-                    }
-                });
-                
-                // Touch/swipe support
-                let touchStartX = 0;
-                let touchEndX = 0;
-                
-                container.addEventListener('touchstart', (e) => {
-                    touchStartX = e.changedTouches[0].screenX;
-                }, { passive: true });
-                
-                container.addEventListener('touchend', (e) => {
-                    touchEndX = e.changedTouches[0].screenX;
-                    handleSwipe();
-                }, { passive: true });
-                
-                function handleSwipe() {
-                    const swipeThreshold = 50;
-                    const diff = touchStartX - touchEndX;
-                    
-                    if (Math.abs(diff) > swipeThreshold) {
-                        if (diff > 0) {
-                            nextSlide(); // Sola kaydır = sonraki
-                        } else {
-                            prevSlide(); // Sağa kaydır = önceki
-                        }
-                        resetAutoPlay();
-                    }
-                }
-                
-                // Autoplay başlat
-                startAutoPlay();
-            });
-        }
-        
-        // Initialize sliders after DOM is ready
-        setTimeout(initImageSliders, 200);
-
-        // =============================================
-        // LINK PREVIEW FUNCTIONALITY
-        // =============================================
-        const linkPreview = document.getElementById('linkPreview');
-        const previewImageContainer = document.getElementById('previewImageContainer');
-        const previewImage = document.getElementById('previewImage');
-        const previewPlaceholder = document.getElementById('previewPlaceholder');
-        const previewIcon = document.getElementById('previewIcon');
-        const previewTitle = document.getElementById('previewTitle');
-        const previewDescription = document.getElementById('previewDescription');
-        const previewUrl = document.getElementById('previewUrl');
-        const previewBadge = document.getElementById('previewBadge');
-
-        // Link preview data configuration
-        const linkPreviewData = {
-            whatsapp: {
-                title: 'WhatsApp ile İletişim',
-                description: 'Bize doğrudan WhatsApp üzerinden ulaşabilir, sorularınızı iletebilir ve siparişleriniz hakkında bilgi alabilirsiniz.',
-                icon: 'M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z',
-                badge: '💬 Mesaj Gönder'
-            },
-            instagram: {
-                title: 'Instagram Profilimiz',
-                description: 'En son ürünlerimizi, 3D baskı süreçlerimizi ve özel tasarımlarımızı Instagram hesabımızdan takip edebilirsiniz.',
-                icon: 'M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z',
-                badge: '📸 Takip Et'
-            },
-            seller: {
-                title: 'Satıcı Mağazamız',
-                description: 'Tüm ürünlerimizi güvenle satın alabileceğiniz online mağazamızı ziyaret edin. Hızlı kargo ve güvenli ödeme.',
-                icon: 'M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm7 17H5V8h14v12zm-7-8c-1.66 0-3-1.34-3-3H7c0 2.76 2.24 5 5 5s5-2.24 5-5h-2c0 1.66-1.34 3-3 3z',
-                badge: '🛒 Mağazaya Git'
-            },
-            buy: {
-                title: 'Ürünü Satın Al',
-                description: 'Bu ürünü hemen satın almak için tıklayın. Güvenli ödeme ve hızlı kargo seçenekleri mevcuttur.',
-                icon: 'M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm7 17H5V8h14v12z',
-                badge: '🛒 Satın Al'
-            },
-            youtube: {
-                title: 'Ürün Videosu',
-                description: 'Bu ürünün detaylı tanıtım videosunu izleyin. Ürün özellikleri ve kullanım şeklini görebilirsiniz.',
-                icon: 'M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z',
-                badge: '▶️ Video İzle'
-            }
-        };
-
-        // Get link type from element classes
-        function getLinkType(element) {
-            if (element.classList.contains('whatsapp')) return 'whatsapp';
-            if (element.classList.contains('instagram')) return 'instagram';
-            if (element.classList.contains('seller')) return 'seller';
-            if (element.classList.contains('buy')) return 'buy';
-            if (element.classList.contains('youtube')) return 'youtube';
-            return null;
-        }
-
-        // Show link preview
-        function showLinkPreview(element, event) {
-            const linkType = getLinkType(element);
-            if (!linkType || !linkPreviewData[linkType]) return;
-
-            const data = linkPreviewData[linkType];
-            const href = element.getAttribute('href') || '#';
-            
-            // Check for custom data attributes
-            const customImage = element.getAttribute('data-preview-image');
-            const customTitle = element.getAttribute('data-preview-title');
-            const customDesc = element.getAttribute('data-preview-desc');
-
-            // Set preview image or placeholder
-            if (customImage) {
-                previewImage.src = customImage;
-                previewImage.style.display = 'block';
-                previewImageContainer.classList.add('has-image');
-            } else {
-                previewImage.style.display = 'none';
-                previewImageContainer.classList.remove('has-image');
-            }
-
-            // Set preview content
-            previewPlaceholder.className = 'link-preview-image-placeholder ' + linkType;
-            previewIcon.innerHTML = '<path d="' + data.icon + '"/>';
-            previewTitle.textContent = customTitle || data.title;
-            previewDescription.textContent = customDesc || data.description;
-            previewUrl.textContent = href.replace(/^https?:\/\//, '').substring(0, 35) + (href.length > 35 ? '...' : '');
-            previewBadge.className = 'link-preview-badge ' + linkType;
-            previewBadge.textContent = data.badge;
-
-            // Position the preview
-            updatePreviewPosition(event);
-
-            // Show preview
-            linkPreview.classList.add('visible');
-        }
-
-        // Update preview position based on mouse
-        function updatePreviewPosition(event) {
-            const padding = 20;
-            const previewWidth = 320;
-            const previewHeight = 280;
-            
-            let x = event.clientX + padding;
-            let y = event.clientY + padding;
-
-            // Check right boundary
-            if (x + previewWidth > window.innerWidth) {
-                x = event.clientX - previewWidth - padding;
-            }
-
-            // Check bottom boundary
-            if (y + previewHeight > window.innerHeight) {
-                y = event.clientY - previewHeight - padding;
-            }
-
-            // Ensure minimum boundaries
-            x = Math.max(padding, x);
-            y = Math.max(padding, y);
-
-            linkPreview.style.left = x + 'px';
-            linkPreview.style.top = y + 'px';
-        }
-
-        // Hide link preview
-        function hideLinkPreview() {
-            linkPreview.classList.remove('visible');
-        }
-
-        // Attach event listeners to all previewable links
-        const previewableLinks = document.querySelectorAll('.social-btn, .product-link');
-        
-        previewableLinks.forEach(link => {
-            let hoverTimeout;
-
-            link.addEventListener('mouseenter', (e) => {
-                hoverTimeout = setTimeout(() => {
-                    showLinkPreview(link, e);
-                }, 300); // Small delay before showing
-            });
-
-            link.addEventListener('mousemove', (e) => {
-                if (linkPreview.classList.contains('visible')) {
-                    updatePreviewPosition(e);
-                }
-            });
-
-            link.addEventListener('mouseleave', () => {
-                clearTimeout(hoverTimeout);
-                hideLinkPreview();
-            });
-        });
-
-        // =============================================
-        // RIPPLE EFFECT FOR BUTTONS
-        // =============================================
-        function createRipple(event) {
-            const button = event.currentTarget;
-            const ripple = document.createElement('span');
-            ripple.classList.add('ripple');
-            
-            const rect = button.getBoundingClientRect();
-            const size = Math.max(rect.width, rect.height);
-            
-            ripple.style.width = ripple.style.height = size + 'px';
-            ripple.style.left = (event.clientX - rect.left - size / 2) + 'px';
-            ripple.style.top = (event.clientY - rect.top - size / 2) + 'px';
-            
-            button.appendChild(ripple);
-            
-            ripple.addEventListener('animationend', () => {
-                ripple.remove();
-            });
-        }
-
-        // Attach ripple to social buttons
-        document.querySelectorAll('.social-btn, .product-link').forEach(btn => {
-            btn.addEventListener('click', createRipple);
-        });
-
-        // =============================================
-        // TILT EFFECT FOR PRODUCT CARDS
-        // =============================================
-        function initTiltEffect() {
-            const cards = document.querySelectorAll('.product-card');
-            
-            cards.forEach(card => {
-                // Store original transform state
-                let isHovering = false;
-                let animationId = null;
-                let currentX = 0;
-                let currentY = 0;
-                let targetX = 0;
-                let targetY = 0;
-                
-                // Smooth animation loop
-                function animate() {
-                    if (!isHovering) {
-                        // Smoothly return to original position
-                        currentX += (0 - currentX) * 0.1;
-                        currentY += (0 - currentY) * 0.1;
-                    } else {
-                        // Smoothly move to target position
-                        currentX += (targetX - currentX) * 0.15;
-                        currentY += (targetY - currentY) * 0.15;
-                    }
-                    
-                    // Apply transform
-                    const transform = `perspective(1000px) rotateX(${currentY}deg) rotateY(${currentX}deg) translateY(${isHovering ? -10 : 0}px) scale(${isHovering ? 1.02 : 1})`;
-                    card.style.transform = transform;
-                    
-                    // Continue animation if values haven't settled
-                    if (Math.abs(currentX) > 0.01 || Math.abs(currentY) > 0.01 || isHovering) {
-                        animationId = requestAnimationFrame(animate);
-                    }
-                }
-                
-                // Use event delegation - only track mouse on the card itself
-                card.addEventListener('mouseenter', (e) => {
-                    isHovering = true;
-                    card.classList.add('tilt-active');
-                    if (animationId) cancelAnimationFrame(animationId);
-                    animationId = requestAnimationFrame(animate);
-                });
-                
-                card.addEventListener('mousemove', (e) => {
-                    if (!isHovering) return;
-                    
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
-                    
-                    // Calculate rotation (inverted for natural feel)
-                    targetX = ((x - centerX) / centerX) * 12; // Max 12 degrees (reduced for smoother feel)
-                    targetY = ((centerY - y) / centerY) * 12;
-                });
-                
-                card.addEventListener('mouseleave', (e) => {
-                    // Check if we're actually leaving the card (not entering a child)
-                    const relatedTarget = e.relatedTarget;
-                    if (relatedTarget && card.contains(relatedTarget)) {
-                        return; // Still inside the card, don't reset
-                    }
-                    
-                    isHovering = false;
-                    card.classList.remove('tilt-active');
-                    targetX = 0;
-                    targetY = 0;
-                    if (animationId) cancelAnimationFrame(animationId);
-                    animationId = requestAnimationFrame(animate);
-                });
-            });
-        }
-        
-        // Initialize tilt effect after cards are visible
-        setTimeout(initTiltEffect, 100);
-
-        // =============================================
-        // TYPING EFFECT FOR SUBTITLE (Optional Enhancement)
-        // =============================================
-        const subtitle = document.querySelector('.hero-subtitle');
-        if (subtitle) {
-            const originalText = subtitle.textContent;
-            subtitle.setAttribute('data-text', originalText);
-        }
-
-        // =============================================
-        // PARALLAX STARS/PARTICLES ON SCROLL
-        // =============================================
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const particles = document.querySelectorAll('.particle');
-            
-            particles.forEach((particle, index) => {
-                const speed = 0.1 + (index * 0.02);
-                particle.style.transform = `translateY(${scrolled * speed}px)`;
-            });
-            
-            // Parallax for orbs
-            const orbs = document.querySelectorAll('.orb');
-            orbs.forEach((orb, index) => {
-                const speed = 0.05 + (index * 0.02);
-                orb.style.transform = `translateY(${scrolled * speed}px)`;
-            });
-        });
-
-        // ===============================
-        // Tab Visibility & Title Change
-        // ===============================
-        (function() {
-            const originalTitle = document.title;
-            const altTitles = ["Buradayız", "Bizi unutma 🥺 "];
-            let titleTimer = null;
-            let altIndex = 0;
-            let altInterval = null;
-
-            function startTitleChange() {
-                if (titleTimer) return;
-                titleTimer = setTimeout(() => {
-                    altInterval = setInterval(() => {
-                        document.title = altTitles[altIndex % altTitles.length];
-                        altIndex++;
-                    }, 5000); // Change every 5 seconds
-                }, 20000); // 20 seconds
-            }
-
-            function stopTitleChange() {
-                clearTimeout(titleTimer);
-                titleTimer = null;
-                clearInterval(altInterval);
-                altInterval = null;
-                altIndex = 0;
-                document.title = originalTitle;
-            }
-
-            document.addEventListener('visibilitychange', function() {
-                if (document.hidden) {
-                    startTitleChange();
-                } else {
-                    stopTitleChange();
-                }
-            });
-        })();
-window.addEventListener('load', function() {
-  setTimeout(function() {
-    document.getElementById('loader').style.display = 'none';
-  }, 1000); // 1000 ms = 1 saniye
-});
-    </script>
+<script src="main.js" ></script>
 <script src="console-art.js" defer></script>
 </body>
 </html>

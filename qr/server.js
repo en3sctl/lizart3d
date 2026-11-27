@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const crypto = require('crypto');
-const rateLimit = require('express-rate-limit');
+const nodemailer = require('nodemailer');
 require('dotenv').config();
 
 const app = express();
@@ -9,38 +9,46 @@ const PORT = process.env.PORT || 8080;
 const HOST = process.env.HOST || 'localhost';
 const ENCRYPTION_KEY = process.env.ENCRYPTION_KEY || 'DefaultKey12345678901234567890!!';
 
-// ============ RATE LIMITING ============
-
-// Genel rate limiter - Tüm istekler için
-const generalLimiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 dakika
-    max: 100, // IP başına 15 dakikada max 100 istek
-    message: { error: 'Çok fazla istek gönderdiniz. Lütfen 15 dakika sonra tekrar deneyin.' },
-    standardHeaders: true,
-    legacyHeaders: false,
+// ============ EMAIL CONFIGURATION FOR 2FA ============
+const emailTransporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+    }
 });
 
-// API rate limiter - API endpoint'leri için daha sıkı
-const apiLimiter = rateLimit({
-    windowMs: 1 * 60 * 1000, // 1 dakika
-    max: 30, // IP başına dakikada max 30 API isteği
-    message: { error: 'API istek limiti aşıldı. Lütfen biraz bekleyin.' },
-    standardHeaders: true,
-    legacyHeaders: false,
-});
+// Store 2FA codes temporarily (in production, use Redis or database)
+const twoFactorCodes = new Map();
 
-// Auth rate limiter - Giriş denemeleri için çok sıkı
-const authLimiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 dakika
-    max: 5, // IP başına 15 dakikada max 5 giriş denemesi
-    message: { error: 'Çok fazla giriş denemesi. Lütfen 15 dakika sonra tekrar deneyin.' },
-    standardHeaders: true,
-    legacyHeaders: false,
-    skipSuccessfulRequests: true, // Başarılı girişler sayılmaz
-});
+// Generate 6-digit 2FA code
+function generate2FACode() {
+    return Math.floor(100000 + Math.random() * 900000).toString();
+}
 
-// Genel limiter'ı uygula
-app.use(generalLimiter);
+// Send 2FA code via email
+async function send2FAEmail(email, code) {
+    const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: email,
+        subject: 'LizArt3D QR Admin - Doğrulama Kodu',
+        html: `
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+                <h2 style="color: #333;">🔐 Güvenlik Doğrulaması</h2>
+                <p style="font-size: 16px; color: #555;">Admin paneline giriş için doğrulama kodunuz:</p>
+                <div style="background-color: #f0f0f0; padding: 20px; text-align: center; margin: 20px 0; border-radius: 8px;">
+                    <h1 style="color: #2196F3; margin: 0; letter-spacing: 5px; font-size: 32px;">${code}</h1>
+                </div>
+                <p style="font-size: 14px; color: #777;">Bu kod 5 dakika içinde geçerliliğini yitirecektir.</p>
+                <p style="font-size: 14px; color: #777;">Bu girişi siz yapmadıysanız, lütfen bu e-postayı görmezden gelin.</p>
+                <hr style="border: none; border-top: 1px solid #ddd; margin: 20px 0;">
+                <p style="font-size: 12px; color: #999;">LizArt3D QR Management System</p>
+            </div>
+        `
+    };
+
+    return await emailTransporter.sendMail(mailOptions);
+}
 
 // CORS middleware
 app.use((req, res, next) => {
@@ -92,25 +100,67 @@ app.use(express.static(path.join(__dirname)));
 app.use(express.json());
 
 // API endpoint to encrypt data
-app.post('/api/encrypt', apiLimiter, (req, res) => {
+app.post('/api/encrypt', (req, res) => {
     const { text } = req.body;
     res.json({ encrypted: encrypt(text) });
 });
 
 // API endpoint to decrypt data
-app.post('/api/decrypt', apiLimiter, (req, res) => {
+app.post('/api/decrypt', (req, res) => {
     const { text } = req.body;
     res.json({ decrypted: decrypt(text) });
 });
 
 // API endpoint to verify admin password
-app.post('/api/verify-admin', authLimiter, (req, res) => {
+app.post('/api/verify-admin', async (req, res) => {
     const { password } = req.body;
     
     if (password === process.env.ADMIN_PASSWORD) {
-        res.json({ success: true });
+        // Password is correct, generate and send 2FA code
+        const code = generate2FACode();
+        const sessionId = crypto.randomBytes(16).toString('hex');
+        
+        // Store code with 5 minute expiration
+        twoFactorCodes.set(sessionId, {
+            code: code,
+            expiresAt: Date.now() + 5 * 60 * 1000, // 5 minutes
+            verified: false
+        });
+        
+        try {
+            await send2FAEmail('alperennozdemir34@gmail.com', code);
+            res.json({ success: true, requiresTwoFactor: true, sessionId: sessionId });
+        } catch (error) {
+            console.error('Email gönderme hatası:', error);
+            res.json({ success: false, error: 'E-posta gönderilemedi' });
+        }
     } else {
         res.json({ success: false });
+    }
+});
+
+// API endpoint to verify 2FA code
+app.post('/api/verify-2fa', (req, res) => {
+    const { sessionId, code } = req.body;
+    
+    const session = twoFactorCodes.get(sessionId);
+    
+    if (!session) {
+        return res.json({ success: false, error: 'Geçersiz oturum' });
+    }
+    
+    if (Date.now() > session.expiresAt) {
+        twoFactorCodes.delete(sessionId);
+        return res.json({ success: false, error: 'Kod süresi doldu' });
+    }
+    
+    if (session.code === code) {
+        session.verified = true;
+        // Clean up after 1 minute
+        setTimeout(() => twoFactorCodes.delete(sessionId), 60000);
+        res.json({ success: true });
+    } else {
+        res.json({ success: false, error: 'Kod hatalı' });
     }
 });
 

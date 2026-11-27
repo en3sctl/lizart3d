@@ -75,6 +75,14 @@ const newQrLink = document.getElementById('newQrLink');
 const qrCodeImage = document.getElementById('qrCodeImage');
 const qrList = document.getElementById('qrList');
 
+// 2FA Elements
+const twoFactorScreen = document.getElementById('twoFactorScreen');
+const twoFactorCode = document.getElementById('twoFactorCode');
+const verify2FABtn = document.getElementById('verify2FABtn');
+const back2FABtn = document.getElementById('back2FABtn');
+const twoFactorError = document.getElementById('twoFactorError');
+let currentSessionId = null;
+
 // Check if already logged in
 function checkAuth() {
     const isLoggedIn = sessionStorage.getItem('adminLoggedIn');
@@ -98,7 +106,15 @@ async function login() {
         
         const result = await response.json();
         
-        if (result.success) {
+        if (result.success && result.requiresTwoFactor) {
+            // Show 2FA screen
+            currentSessionId = result.sessionId;
+            loginError.classList.add('hidden');
+            loginScreen.classList.add('hidden');
+            twoFactorScreen.classList.remove('hidden');
+            twoFactorCode.value = '';
+            twoFactorCode.focus();
+        } else if (result.success) {
             sessionStorage.setItem('adminLoggedIn', 'true');
             loginError.classList.add('hidden');
             showAdminPanel();
@@ -109,6 +125,55 @@ async function login() {
         console.error('Login hatasi:', error);
         loginError.classList.remove('hidden');
     }
+}
+
+// Verify 2FA code
+async function verify2FA() {
+    const code = twoFactorCode.value.trim();
+    
+    if (code.length !== 6) {
+        twoFactorError.textContent = 'Lütfen 6 haneli kodu girin';
+        twoFactorError.classList.remove('hidden');
+        return;
+    }
+    
+    try {
+        const response = await fetch('/api/verify-2fa', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ 
+                sessionId: currentSessionId,
+                code: code 
+            })
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            sessionStorage.setItem('adminLoggedIn', 'true');
+            twoFactorError.classList.add('hidden');
+            twoFactorScreen.classList.add('hidden');
+            showAdminPanel();
+        } else {
+            twoFactorError.textContent = result.error || 'Kod hatalı!';
+            twoFactorError.classList.remove('hidden');
+        }
+    } catch (error) {
+        console.error('2FA doğrulama hatası:', error);
+        twoFactorError.textContent = 'Doğrulama hatası!';
+        twoFactorError.classList.remove('hidden');
+    }
+}
+
+// Go back to login screen from 2FA
+function backToLogin() {
+    twoFactorScreen.classList.add('hidden');
+    loginScreen.classList.remove('hidden');
+    twoFactorCode.value = '';
+    twoFactorError.classList.add('hidden');
+    currentSessionId = null;
 }
 
 // Logout
@@ -555,6 +620,19 @@ adminPassword.addEventListener('keypress', (e) => {
 });
 logoutBtn.addEventListener('click', logout);
 createQrBtn.addEventListener('click', createQrCode);
+
+// 2FA Event Listeners
+verify2FABtn.addEventListener('click', verify2FA);
+back2FABtn.addEventListener('click', backToLogin);
+twoFactorCode.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') verify2FA();
+});
+// Auto-submit when 6 digits entered
+twoFactorCode.addEventListener('input', (e) => {
+    if (e.target.value.length === 6) {
+        verify2FA();
+    }
+});
 
 // Download QR button
 const downloadQrBtn = document.getElementById('downloadQrBtn');

@@ -1,0 +1,259 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Eklemli Oturan Gül Figürü",
+      "description": "Estetik tasarımıyla dekoratif ve şık! Hareketli yapısı sayesinde masa kenarlarına oturabilen bu özel gül figürü, yüksek kaliteli ve çevre dostu PLA filament ile LizArt3D tarafından üretilmiştir.",
+      "badge": "Satışta",
+      "tag": "figür",
+      "images": [
+        "https://res.cloudinary.com/ddv7evrxs/image/upload/f_auto,q_auto:eco/v1770767886/lizart3d-gul-1_ivwcqo.png",
+        "https://res.cloudinary.com/ddv7evrxs/image/upload/f_auto,q_auto:eco/v1770767887/lizart3d-gul-2_eeqtmq.png",
+        "https://res.cloudinary.com/ddv7evrxs/image/upload/f_auto,q_auto:eco/v1770767886/lizart3d-gul-3_urpd9r.png"
+      ],
+      "links": {
+        "buy": {
+          "url": "#",
+          "previewImage": "https://res.cloudinary.com/ddv7evrxs/image/upload/f_auto,q_auto:eco/v1770767886/lizart3d-gul-1_ivwcqo.png",
+          "previewTitle": "Eklemli Oturan Gül Figürü - Satın Al",
+          "previewDesc": "Bu ürünü hemen sepetine ekle! Yüksek kaliteli PLA filament ile üretildi."
+        },
+        "instagram": {
+          "url": "#",
+          "previewImage": "https://res.cloudinary.com/ddv7evrxs/image/upload/f_auto,q_auto:eco/v1770767887/lizart3d-gul-2_eeqtmq.png",
+          "previewTitle": "Eklemli Oturan Gül Figürü - Instagram",
+          "previewDesc": "Bu ürünün Instagram gönderisine göz atın ve beğenmeyi unutmayın!"
+        },
+        "youtube": {
+          "url": "#",
+          "previewImage": "https://res.cloudinary.com/ddv7evrxs/video/upload/v1770769058/Sequence_02_ruhchn.mp4",
+          "previewTitle": "Eklemli Oturan Gül Figürü - Tanıtım Videosu",
+          "previewDesc": "Eklemli oturan gül figürünün nasıl üretildiğini bu videoda izleyebilirsiniz!"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "name": "Kalp Makaron \"Clicky\" Anahtarlık",
+      "description": "Sevdiklerinize ya da kendinize verebileceğiniz en şirin hediye ile tanışın! Bu makaronlar sadece birer aksesuar değil, aynı zamanda stresinizi atmanıza yardımcı olacak eğlenceli birer oyuncak.",
+      "badge": "Satışta",
+      "tag": "anahtarlık",
+      "images": [
+        "showroom/anahtarliklar/lizart3d-pembe-kalp-makaron-fidget-oyuncak.gif",
+        "showroom/anahtarliklar/lizart3d-sevimli-yuzlu-kalp-anahtarlik.webp",
+        "showroom/anahtarliklar/lizart3d-mekanik-switch-detay.webp"
+      ],
+      "links": {
+        "buy": {
+          "url": "#",
+          "previewImage": "showroom/anahtarliklar/lizart3d-pembe-kalp-makaron-fidget-oyuncak.gif",
+          "previewTitle": "Kalp Makaron Clicky Anahtarlık - Satın Al",
+          "previewDesc": "Bu ürünü hemen sepetine ekle! Yüksek kaliteli PLA filament ile üretildi."
+        },
+        "instagram": {
+          "url": "#",
+          "previewImage": "showroom/anahtarliklar/lizart3d-sevimli-yuzlu-kalp-anahtarlik.webp",
+          "previewTitle": "Kalp Makaron Clicky Anahtarlık - Instagram",
+          "previewDesc": "Bu ürünün Instagram gönderisine göz atın ve beğenmeyi unutmayın!"
+        },
+        "youtube": {
+          "url": "#",
+          "previewImage": "showroom/anahtarliklar/lizart3d-mekanik-switch-detay.webp",
+          "previewTitle": "Kalp Makaron Clicky Anahtarlık - Tanıtım Videosu",
+          "previewDesc": "Fidget kalp makaronun nasıl ses çıkardığını ve üretimini bu videoda izleyebilirsiniz!"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "name": "Demogorgon Hareketli Anahtarlık",
+      "description": "Upside Down'dan kaçan bir misafirimiz var! Bu mini Demogorgon, esnek vücuduyla elinizde kıpır kıpır ediyor.",
+      "badge": "Satışta",
+      "tag": "figür",
+      "images": [
+        "showroom/anahtarliklar/lizart3d-stranger-things-demogorgon-figuru.webp",
+        "showroom/anahtarliklar/lizart3d-mini-canavar-masaustu-dekor-oyuncak.webp",
+        "showroom/anahtarliklar/lizart3d-ozel-tasarim-3d-baski-korku-karakterleri.webp"
+      ],
+      "links": {
+        "buy": {
+          "url": "#",
+          "previewImage": "showroom/anahtarliklar/lizart3d-stranger-things-demogorgon-figuru.webp",
+          "previewTitle": "Demogorgon Hareketli Anahtarlık - Satın Al",
+          "previewDesc": "Bu ürünü hemen sepetine ekle! Yüksek kaliteli PLA filament ile üretildi."
+        },
+        "instagram": {
+          "url": "#",
+          "previewImage": "showroom/anahtarliklar/lizart3d-mini-canavar-masaustu-dekor-oyuncak.webp",
+          "previewTitle": "Demogorgon Hareketli Anahtarlık - Instagram",
+          "previewDesc": "Bu ürünün Instagram gönderisine göz atın ve beğenmeyi unutmayın!"
+        },
+        "youtube": {
+          "url": "#",
+          "previewImage": "showroom/anahtarliklar/lizart3d-ozel-tasarim-3d-baski-korku-karakterleri.webp",
+          "previewTitle": "Demogorgon Hareketli Anahtarlık - Tanıtım Videosu",
+          "previewDesc": "Demogorgon hareketli anahtarlığın nasıl hareket ettiğini ve üretimini bu videoda izleyebilirsiniz!"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "name": "Hareketli Penguin Anahtarlık",
+      "description": "Bu minik penguen elinizde kıpır kıpır! ❄️ Tamamen hareketli eklemleriyle, yeni favori aksesuarınız olacak.",
+      "badge": "Satışta",
+      "tag": "anahtarlık",
+      "images": [
+        "showroom/anahtarliklar/lizart3d-eklemli-hareketli-sevimli-penguen-figuru.webp",
+        "showroom/anahtarliklar/lizart3d-mini-fidget-stres-oyuncagi-penguen-ailesi.webp"
+      ],
+      "links": {
+        "buy": {
+          "url": "#",
+          "previewImage": "showroom/anahtarliklar/lizart3d-eklemli-hareketli-sevimli-penguen-figuru.webp",
+          "previewTitle": "Hareketli Penguin Anahtarlık - Satın Al",
+          "previewDesc": "Bu ürünü hemen sepetine ekle! Yüksek kaliteli PLA filament ile üretildi."
+        },
+        "instagram": {
+          "url": "#",
+          "previewImage": "showroom/anahtarliklar/lizart3d-mini-fidget-stres-oyuncagi-penguen-ailesi.webp",
+          "previewTitle": "Hareketli Penguin Anahtarlık - Instagram",
+          "previewDesc": "Bu ürünün Instagram gönderisine göz atın ve beğenmeyi unutmayın!"
+        },
+        "youtube": {
+          "url": "#",
+          "previewImage": "showroom/anahtarliklar/lizart3d-eklemli-hareketli-sevimli-penguen-figuru.webp",
+          "previewTitle": "Hareketli Penguin Anahtarlık - Tanıtım Videosu",
+          "previewDesc": "Hareketli penguen anahtarlığın nasıl hareket ettiğini bu videoda izleyebilirsiniz!"
+        }
+      }
+    },
+        {
+      "id": 5,
+      "name": "Demogorgon Hareketli Anahtarlık",
+      "description": "Upside Down'dan kaçan bir misafirimiz var! Bu mini Demogorgon, esnek vücuduyla elinizde kıpır kıpır ediyor.",
+      "badge": "Satışta",
+      "tag": "figür",
+      "images": [
+        "showroom/anahtarliklar/lizart3d-stranger-things-demogorgon-figuru.webp",
+        "showroom/anahtarliklar/lizart3d-mini-canavar-masaustu-dekor-oyuncak.webp",
+        "showroom/anahtarliklar/lizart3d-ozel-tasarim-3d-baski-korku-karakterleri.webp"
+      ],
+      "links": {
+        "buy": {
+          "url": "#",
+          "previewImage": "showroom/anahtarliklar/lizart3d-stranger-things-demogorgon-figuru.webp",
+          "previewTitle": "Demogorgon Hareketli Anahtarlık - Satın Al",
+          "previewDesc": "Bu ürünü hemen sepetine ekle! Yüksek kaliteli PLA filament ile üretildi."
+        },
+        "instagram": {
+          "url": "#",
+          "previewImage": "showroom/anahtarliklar/lizart3d-mini-canavar-masaustu-dekor-oyuncak.webp",
+          "previewTitle": "Demogorgon Hareketli Anahtarlık - Instagram",
+          "previewDesc": "Bu ürünün Instagram gönderisine göz atın ve beğenmeyi unutmayın!"
+        },
+        "youtube": {
+          "url": "#",
+          "previewImage": "showroom/anahtarliklar/lizart3d-ozel-tasarim-3d-baski-korku-karakterleri.webp",
+          "previewTitle": "Demogorgon Hareketli Anahtarlık - Tanıtım Videosu",
+          "previewDesc": "Demogorgon hareketli anahtarlığın nasıl hareket ettiğini ve üretimini bu videoda izleyebilirsiniz!"
+        }
+      }
+    },
+        {
+      "id": 6,
+      "name": "Demogorgon Hareketli Anahtarlık",
+      "description": "Upside Down'dan kaçan bir misafirimiz var! Bu mini Demogorgon, esnek vücuduyla elinizde kıpır kıpır ediyor.",
+      "badge": "Satışta",
+      "tag": "figür",
+      "images": [
+        "showroom/anahtarliklar/lizart3d-stranger-things-demogorgon-figuru.webp",
+        "showroom/anahtarliklar/lizart3d-mini-canavar-masaustu-dekor-oyuncak.webp",
+        "showroom/anahtarliklar/lizart3d-ozel-tasarim-3d-baski-korku-karakterleri.webp"
+      ],
+      "links": {
+        "buy": {
+          "url": "#",
+          "previewImage": "showroom/anahtarliklar/lizart3d-stranger-things-demogorgon-figuru.webp",
+          "previewTitle": "Demogorgon Hareketli Anahtarlık - Satın Al",
+          "previewDesc": "Bu ürünü hemen sepetine ekle! Yüksek kaliteli PLA filament ile üretildi."
+        },
+        "instagram": {
+          "url": "#",
+          "previewImage": "showroom/anahtarliklar/lizart3d-mini-canavar-masaustu-dekor-oyuncak.webp",
+          "previewTitle": "Demogorgon Hareketli Anahtarlık - Instagram",
+          "previewDesc": "Bu ürünün Instagram gönderisine göz atın ve beğenmeyi unutmayın!"
+        },
+        "youtube": {
+          "url": "#",
+          "previewImage": "showroom/anahtarliklar/lizart3d-ozel-tasarim-3d-baski-korku-karakterleri.webp",
+          "previewTitle": "Demogorgon Hareketli Anahtarlık - Tanıtım Videosu",
+          "previewDesc": "Demogorgon hareketli anahtarlığın nasıl hareket ettiğini ve üretimini bu videoda izleyebilirsiniz!"
+        }
+      }
+    },
+        {
+      "id": 7,
+      "name": "Demogorgon Hareketli Anahtarlık",
+      "description": "Upside Down'dan kaçan bir misafirimiz var! Bu mini Demogorgon, esnek vücuduyla elinizde kıpır kıpır ediyor.",
+      "badge": "Satışta",
+      "tag": "dekorasyon",
+      "images": [
+        "showroom/anahtarliklar/lizart3d-stranger-things-demogorgon-figuru.webp",
+        "showroom/anahtarliklar/lizart3d-mini-canavar-masaustu-dekor-oyuncak.webp",
+        "showroom/anahtarliklar/lizart3d-ozel-tasarim-3d-baski-korku-karakterleri.webp"
+      ],
+      "links": {
+        "buy": {
+          "url": "#",
+          "previewImage": "showroom/anahtarliklar/lizart3d-stranger-things-demogorgon-figuru.webp",
+          "previewTitle": "Demogorgon Hareketli Anahtarlık - Satın Al",
+          "previewDesc": "Bu ürünü hemen sepetine ekle! Yüksek kaliteli PLA filament ile üretildi."
+        },
+        "instagram": {
+          "url": "#",
+          "previewImage": "showroom/anahtarliklar/lizart3d-mini-canavar-masaustu-dekor-oyuncak.webp",
+          "previewTitle": "Demogorgon Hareketli Anahtarlık - Instagram",
+          "previewDesc": "Bu ürünün Instagram gönderisine göz atın ve beğenmeyi unutmayın!"
+        },
+        "youtube": {
+          "url": "#",
+          "previewImage": "showroom/anahtarliklar/lizart3d-ozel-tasarim-3d-baski-korku-karakterleri.webp",
+          "previewTitle": "Demogorgon Hareketli Anahtarlık - Tanıtım Videosu",
+          "previewDesc": "Demogorgon hareketli anahtarlığın nasıl hareket ettiğini ve üretimini bu videoda izleyebilirsiniz!"
+        }
+      }
+    },
+        {
+      "id": 8,
+      "name": "Demogorgon Hareketli Anahtarlık",
+      "description": "Upside Down'dan kaçan bir misafirimiz var! Bu mini Demogorgon, esnek vücuduyla elinizde kıpır kıpır ediyor.",
+      "badge": "Satışta",
+      "tag": "dekorasyon",
+      "images": [
+        "showroom/anahtarliklar/lizart3d-stranger-things-demogorgon-figuru.webp",
+        "showroom/anahtarliklar/lizart3d-mini-canavar-masaustu-dekor-oyuncak.webp",
+        "showroom/anahtarliklar/lizart3d-ozel-tasarim-3d-baski-korku-karakterleri.webp"
+      ],
+      "links": {
+        "buy": {
+          "url": "#",
+          "previewImage": "showroom/anahtarliklar/lizart3d-stranger-things-demogorgon-figuru.webp",
+          "previewTitle": "Demogorgon Hareketli Anahtarlık - Satın Al",
+          "previewDesc": "Bu ürünü hemen sepetine ekle! Yüksek kaliteli PLA filament ile üretildi."
+        },
+        "instagram": {
+          "url": "#",
+          "previewImage": "showroom/anahtarliklar/lizart3d-mini-canavar-masaustu-dekor-oyuncak.webp",
+          "previewTitle": "Demogorgon Hareketli Anahtarlık - Instagram",
+          "previewDesc": "Bu ürünün Instagram gönderisine göz atın ve beğenmeyi unutmayın!"
+        },
+        "youtube": {
+          "url": "#",
+          "previewImage": "showroom/anahtarliklar/lizart3d-ozel-tasarim-3d-baski-korku-karakterleri.webp",
+          "previewTitle": "Demogorgon Hareketli Anahtarlık - Tanıtım Videosu",
+          "previewDesc": "Demogorgon hareketli anahtarlığın nasıl hareket ettiğini ve üretimini bu videoda izleyebilirsiniz!"
+        }
+      }
+    }
+  ]
+}

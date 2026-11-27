@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QR Admin Paneli</title>
-    <link rel="icon" type="image/png" href="3d-iguana.webp">
+    <link rel="icon" type="image/png" href="https://res.cloudinary.com/ddv7evrxs/image/upload/w_180,h_180,c_fill,f_auto,q_auto:eco/v1770131962/3d-iguana_cnxexj.png">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,7 +16,7 @@
     <div class="container">
         <!-- Logo Section -->
         <div class="logo-section" style="cursor: default;">
-            <img src="3d-iguana.webp" alt="LizArt Logo" class="logo-img">
+            <img src="https://res.cloudinary.com/ddv7evrxs/image/upload/w_180,h_180,c_fill,f_auto,q_auto:eco/v1770131962/3d-iguana_cnxexj.png" alt="LizArt Logo" class="logo-img">
             <span class="logo-text">LizArt3D</span>
         </div>
 
@@ -28,6 +28,20 @@
             <input type="password" id="adminPassword" placeholder="Admin Şifresi">
             <button id="loginBtn" class="btn primary">Giriş</button>
             <p id="loginError" class="error hidden">Şifre yanlış!</p>
+        </div>
+
+        <!-- 2FA Doğrulama Ekranı -->
+        <div id="twoFactorScreen" class="screen hidden">
+            <div class="icon">📧</div>
+            <h2>İki Faktörlü Doğrulama</h2>
+            <p style="text-align: center; margin-bottom: 20px;">
+                E-posta adresinize gönderilen 6 haneli kodu girin.
+            </p>
+            <label for="twoFactorCode" class="visually-hidden">Doğrulama Kodu</label>
+            <input type="text" id="twoFactorCode" placeholder="6 Haneli Kod" maxlength="6" style="text-align: center; letter-spacing: 5px; font-size: 20px;">
+            <button id="verify2FABtn" class="btn primary">Doğrula</button>
+            <button id="back2FABtn" class="btn small" style="margin-top: 10px;">Geri Dön</button>
+            <p id="twoFactorError" class="error hidden">Kod hatalı!</p>
         </div>
 
         <!-- Admin Panel -->

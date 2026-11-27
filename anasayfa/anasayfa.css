@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Rakesly';
-    src: url('rakesly rg it.ttf') format('truetype');
+    src: url('https://res.cloudinary.com/ddv7evrxs/raw/upload/v1770142126/rakesly_rg_it_czpsdl.ttf') format('truetype');
     font-weight: normal;
     font-style: italic;
 }
@@ -151,7 +151,9 @@ body {
     text-decoration: none;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
-    overflow: hidden;
+    overflow: visible;
+    transform-style: preserve-3d;
+    perspective: 1000px;
 }
 
 .social-btn::before {
@@ -161,18 +163,38 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.15);
     transform: scale(0);
     border-radius: 50%;
     transition: transform 0.3s;
+    z-index: 1;
+}
+
+.social-btn::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border-radius: 50%;
+    background: inherit;
+    filter: blur(15px);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
 }
 
 .social-btn:hover::before {
-    transform: scale(1);
+    transform: scale(1.2);
+}
+
+.social-btn:hover::after {
+    opacity: 0.7;
 }
 
 .social-btn:hover {
-    transform: translateY(-5px) scale(1.1);
+    transform: translateY(-10px) translateZ(30px) scale(1.15);
 }
 
 /* Ripple Effect */
@@ -197,6 +219,7 @@ body {
 .social-btn:nth-child(1) { animation: socialFloat 3s ease-in-out infinite; }
 .social-btn:nth-child(2) { animation: socialFloat 3s ease-in-out infinite 0.2s; }
 .social-btn:nth-child(3) { animation: socialFloat 3s ease-in-out infinite 0.4s; }
+.social-btn:nth-child(4) { animation: socialFloat 3s ease-in-out infinite 0.6s; }
 
 @keyframes socialFloat {
     0%, 100% { transform: translateY(0); }
@@ -205,7 +228,6 @@ body {
 
 .social-btn:hover {
     animation: none;
-    transform: translateY(-8px) scale(1.15);
 }
 
 .social-btn svg {
@@ -218,31 +240,62 @@ body {
 /* WhatsApp Button */
 .social-btn.whatsapp {
     background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4),
+                inset 0 1px 0 rgba(255,255,255,0.2),
+                inset 0 -1px 0 rgba(0,0,0,0.2);
 }
 
 .social-btn.whatsapp:hover {
-    box-shadow: 0 15px 35px rgba(37, 211, 102, 0.5);
+    box-shadow: 0 20px 40px rgba(37, 211, 102, 0.6),
+                0 0 30px rgba(37, 211, 102, 0.4),
+                inset 0 2px 0 rgba(255,255,255,0.3),
+                inset 0 -2px 0 rgba(0,0,0,0.3);
 }
 
 /* Instagram Button */
 .social-btn.instagram {
     background: linear-gradient(135deg, #833AB4 0%, #FD1D1D 50%, #FCAF45 100%);
-    box-shadow: 0 8px 25px rgba(131, 58, 180, 0.4);
+    box-shadow: 0 8px 25px rgba(131, 58, 180, 0.4),
+                inset 0 1px 0 rgba(255,255,255,0.2),
+                inset 0 -1px 0 rgba(0,0,0,0.2);
 }
 
 .social-btn.instagram:hover {
-    box-shadow: 0 15px 35px rgba(131, 58, 180, 0.5);
+    box-shadow: 0 20px 40px rgba(131, 58, 180, 0.6),
+                0 0 30px rgba(253, 29, 29, 0.4),
+                inset 0 2px 0 rgba(255,255,255,0.3),
+                inset 0 -2px 0 rgba(0,0,0,0.3);
+}
+
+/* Gmail Button */
+.social-btn.gmail {
+    background: #ffffff;
+    box-shadow: 0 8px 25px rgba(66, 133, 244, 0.3),
+                inset 0 1px 0 rgba(255,255,255,0.5),
+                inset 0 -1px 0 rgba(0,0,0,0.1);
+}
+
+.social-btn.gmail:hover {
+    box-shadow: 0 20px 40px rgba(66, 133, 244, 0.5),
+                0 0 30px rgba(66, 133, 244, 0.3),
+                inset 0 2px 0 rgba(255,255,255,0.6),
+                inset 0 -2px 0 rgba(0,0,0,0.15);
+    transform: translateY(-10px) translateZ(30px) scale(1.15);
 }
 
 /* Seller Button */
 .social-btn.seller {
     background: linear-gradient(135deg, #FF6B00 0%, #FF8C00 100%);
-    box-shadow: 0 8px 25px rgba(255, 107, 0, 0.4);
+    box-shadow: 0 8px 25px rgba(255, 107, 0, 0.4),
+                inset 0 1px 0 rgba(255,255,255,0.2),
+                inset 0 -1px 0 rgba(0,0,0,0.2);
 }
 
 .social-btn.seller:hover {
-    box-shadow: 0 15px 35px rgba(255, 107, 0, 0.5);
+    box-shadow: 0 20px 40px rgba(255, 107, 0, 0.6),
+                0 0 30px rgba(255, 140, 0, 0.4),
+                inset 0 2px 0 rgba(255,255,255,0.3),
+                inset 0 -2px 0 rgba(0,0,0,0.3);
 }
 
 /* =============================================
@@ -668,10 +721,24 @@ body {
    ============================================= */
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
     gap: 40px;
     max-width: 1400px;
     margin: 0 auto;
+    justify-items: center;
+}
+
+@media (min-width: 1024px) {
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
 }
 
 /* =============================================
@@ -688,6 +755,11 @@ body {
     transform: translateY(80px) scale(0.95);
     transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
 }
 
 /* Animated Border Gradient */
@@ -937,6 +1009,9 @@ body {
     padding: 25px;
     position: relative;
     z-index: 10;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 .product-name {
@@ -951,6 +1026,7 @@ body {
     color: rgba(255,255,255,0.6);
     line-height: 1.7;
     margin-bottom: 20px;
+    flex: 1;
 }
 
 /* =============================================
@@ -962,6 +1038,8 @@ body {
     flex-wrap: wrap;
     position: relative;
     z-index: 20;
+    justify-content: center;
+    margin-top: auto;
 }
 
 .product-link {
@@ -1016,6 +1094,156 @@ body {
 }
 
 /* =============================================
+   FILTER BUTTONS
+   ============================================= */
+.filter-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin: 30px 0 20px;
+    padding: 0 20px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: rgba(120, 119, 198, 0.15);
+    border: 2px solid rgba(120, 119, 198, 0.4);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    text-transform: capitalize;
+    letter-spacing: 0.5px;
+}
+
+.filter-btn:hover {
+    background: rgba(120, 119, 198, 0.25);
+    border-color: var(--neon-primary);
+    box-shadow: 0 0 15px rgba(120, 119, 198, 0.3);
+    transform: translateY(-2px);
+}
+
+.filter-btn.active {
+    background: linear-gradient(135deg, var(--neon-primary), var(--neon-secondary));
+    border-color: var(--neon-accent);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+    transform: scale(1.05);
+}
+
+.filter-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease;
+}
+
+.filter-btn:hover::before {
+    width: 100%;
+    height: 100%;
+}
+
+/* =============================================
+   PAGINATION
+   ============================================= */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 40px 0 30px;
+    padding: 0 20px;
+}
+
+.pagination-top {
+    margin: 20px 0 30px;
+}
+
+.pagination-bottom {
+    margin: 40px 0 30px;
+}
+
+.pagination-btn {
+    background: rgba(120, 119, 198, 0.1);
+    border: 2px solid var(--neon-primary);
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagination-btn:hover:not(:disabled) {
+    background: rgba(120, 119, 198, 0.3);
+    border-color: var(--neon-accent);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+.pagination-btn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.pagination-btn.active {
+    background: linear-gradient(135deg, var(--neon-primary), var(--neon-secondary));
+    border-color: var(--neon-accent);
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.5);
+}
+
+.pagination-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    border-color: rgba(120, 119, 198, 0.3);
+}
+
+.pagination-btn.prev svg,
+.pagination-btn.next svg {
+    width: 20px;
+    height: 20px;
+}
+
+.pagination-btn.page-number {
+    font-family: 'Orbitron', monospace;
+}
+
+/* Pagination hover glow effect */
+.pagination-btn:not(:disabled)::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(0, 240, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease;
+}
+
+.pagination-btn:not(:disabled):hover::before {
+    width: 100%;
+    height: 100%;
+}
+
+/* =============================================
    SHOWROOM FOOTER
    ============================================= */
 .showroom-footer {
@@ -1030,7 +1258,7 @@ body {
 }
 
 .showroom-footer p {
-    color: rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.7);
     font-size: 13px;
     letter-spacing: 2px;
 }
@@ -1038,6 +1266,144 @@ body {
 /* =============================================
    RESPONSIVE DESIGN
    ============================================= */
+
+/* Tablet ve küçük ekranlar */
+@media (max-width: 1023px) {
+    .showroom-section {
+        padding: 80px 15px;
+    }
+    
+    .showroom-title {
+        font-size: 40px;
+    }
+}
+
+/* Küçük ekranlar ve mobil */
+@media (max-width: 767px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        padding: 0 15px;
+    }
+}
+
+/* Çok küçük ekranlar (400px ve altı) */
+@media (max-width: 400px) {
+    .product-grid {
+        gap: 20px;
+        padding: 0 10px;
+    }
+    
+    .product-card {
+        border-radius: 18px;
+        max-width: 100%;
+    }
+    
+    .product-image-container {
+        height: 200px;
+        border-radius: 18px 18px 0 0;
+    }
+    
+    .product-content {
+        padding: 18px 12px;
+    }
+    
+    .product-name {
+        font-size: 17px;
+        margin-bottom: 8px;
+    }
+    
+    .product-description {
+        font-size: 12px;
+        line-height: 1.5;
+        margin-bottom: 15px;
+    }
+    
+    .product-links {
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+    
+    .product-link {
+        padding: 8px 14px;
+        font-size: 12px;
+        border-radius: 20px;
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+    
+    .product-link svg {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+/* Ekstra küçük ekranlar (309px ve altı) */
+@media (max-width: 320px) {
+    .showroom-section {
+        padding: 60px 8px;
+    }
+    
+    .product-grid {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        padding: 0 8px;
+        width: 100%;
+    }
+    
+    .product-card {
+        border-radius: 16px;
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+    }
+    
+    .product-image-container {
+        height: 180px;
+        border-radius: 16px 16px 0 0;
+    }
+    
+    .product-content {
+        padding: 15px 10px;
+    }
+    
+    .product-name {
+        font-size: 16px;
+        margin-bottom: 6px;
+    }
+    
+    .product-description {
+        font-size: 11px;
+        line-height: 1.4;
+        margin-bottom: 12px;
+    }
+    
+    .product-links {
+        gap: 6px;
+    }
+    
+    .product-link {
+        padding: 7px 12px;
+        font-size: 11px;
+        border-radius: 18px;
+        white-space: nowrap;
+    }
+    
+    .product-link svg {
+        width: 14px;
+        height: 14px;
+    }
+    
+    .product-badge {
+        padding: 6px 12px;
+        font-size: 10px;
+        top: 10px;
+        right: 10px;
+    }
+}
+
 @media (max-width: 768px) {
     /* Hero Responsive */
     .hero-title {
@@ -1064,15 +1430,38 @@ body {
         height: 45px;
     }
     
+    .filter-container {
+        gap: 8px;
+        margin: 20px 0 15px;
+    }
+
+    .filter-btn {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+    
+    .pagination {
+        gap: 6px;
+        margin: 30px 0 20px;
+        flex-wrap: wrap;
+    }
+
+    .pagination-btn {
+        padding: 8px 12px;
+        min-width: 38px;
+        height: 38px;
+        font-size: 14px;
+    }
+
+    .pagination-btn.prev svg,
+    .pagination-btn.next svg {
+        width: 16px;
+        height: 16px;
+    }
+    
     /* Showroom Responsive */
     .showroom-title {
         font-size: 32px;
-    }
-    
-    .product-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-        padding: 0 10px;
     }
     
     .product-image-container {
@@ -1165,7 +1554,8 @@ body {
     overflow: hidden;
 }
 
-.link-preview-image img {
+.link-preview-image img,
+.link-preview-image video {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -1299,13 +1689,41 @@ body {
   z-index: 99999;
   top: 0; left: 0; right: 0; bottom: 0;
   width: 100vw; height: 100vh;
-  background: #000;
+  background: radial-gradient(ellipse at center, #0a0015 0%, #000000 70%);
   display: flex;
   align-items: center;
   justify-content: center;
+  animation: loaderFadeOut 0.8s ease-out 2s forwards;
 }
+
+@keyframes loaderFadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
 .loader img {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   object-fit: contain;
+  animation: loaderPulse 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 30px rgba(120, 198, 119, 0.6))
+          drop-shadow(0 0 60px rgba(100, 220, 100, 0.4))
+          drop-shadow(0 0 90px rgba(80, 200, 120, 0.2));
+}
+
+@keyframes loaderPulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 30px rgba(120, 198, 119, 0.6))
+            drop-shadow(0 0 60px rgba(100, 220, 100, 0.4))
+            drop-shadow(0 0 90px rgba(80, 200, 120, 0.2));
+  }
+  50% {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 40px rgba(120, 198, 119, 0.8))
+            drop-shadow(0 0 80px rgba(100, 220, 100, 0.6))
+            drop-shadow(0 0 120px rgba(80, 200, 120, 0.3));
+  }
 }

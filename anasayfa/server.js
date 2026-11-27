@@ -10,6 +10,12 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET, OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    
+    // JSON dosyaları için doğru Content-Type
+    if (req.path.endsWith('.json')) {
+        res.header('Content-Type', 'application/json; charset=utf-8');
+    }
+    
     if (req.method === 'OPTIONS') {
         return res.sendStatus(200);
     }
